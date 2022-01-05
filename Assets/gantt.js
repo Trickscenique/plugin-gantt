@@ -113,8 +113,9 @@ KB.on('dom.ready', function () {
 	// Fix search filter error -> missing plugin name
 	let formSearch = document.querySelectorAll('form.search');
 	formSearch.forEach((form) => {
+		console.log(form);
 		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+			e.stopImmediatePropagation();
 			console.log(e);
 			let plugin = document.getElementById('form-plugin');
 
