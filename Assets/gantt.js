@@ -31,12 +31,12 @@ const GanttUtils = {
 			data: JSON.stringify(record),
 		});
 	},
-	onClick: function (task) {
-		console.log(task);
-		if (typeof task.onClickUrl != 'undefined') {
-			console.log(task.onClickUrl);
-		}
-	},
+	//	onClick: function (task) {
+	//		console.log(task);
+	//		if (typeof task.onClickUrl != 'undefined') {
+	//			console.log(task.onClickUrl);
+	//		}
+	//	},
 	onDateChange: (task, start, end) => {
 		task.start = start;
 		task.end = end;
@@ -77,8 +77,9 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
+			popup_trigger: 'hover',
 			//on_click: function (task) {
-			//	return GanttUtils.onClick(task);
+			//	return;
 			//},
 			on_date_change: function (task, start, end) {
 				GanttUtils.onDateChange(task, start, end);
