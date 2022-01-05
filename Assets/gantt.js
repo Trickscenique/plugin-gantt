@@ -36,12 +36,10 @@ const GanttUtils = {
 	onDateChange: (task, start, end) => {
 		task.start = start;
 		task.end = end;
-		console.log(task);
 		GanttUtils.saveRecord(task, chartConfig);
 	},
 	onProgressChange: (task, progress) => {
 		task.progress = progress;
-		console.log(task);
 		GanttUtils.saveRecord(task, chartConfig);
 	},
 	onViewChange: (mode) => {},
@@ -65,29 +63,16 @@ KB.on('dom.ready', function () {
 	if (KB.exists('#gantt-chart')) {
 		let container = document.getElementById('gantt-chart');
 		let config = container.dataset;
-		console.log(config);
 		chartConfig = config;
 		let chart = new Gantt('#gantt-chart', GanttUtils.formatTasks(config.records), {
 			column_width: 30,
 			step: 24,
 			view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
-			bar_height: 20,
+			bar_height: 25,
 			bar_corner_radius: 3,
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
-			//custom_popup_html: function (task) {
-			//	// the task object will contain the updated
-			//	// dates and progress value
-			//	const end_date = task.end.toLocaleDateString();
-			//	return `
-			//      <div class="details-container">
-			//        <h5>${task.name}</h5>
-			//        <p>Echéance le ${end_date}</p>
-			//        <p>${task.progress}% complété!</p>
-			//      </div>
-			//    `;
-			//},
 			on_click: function (task) {
 				GanttUtils.onClick(task);
 			},
