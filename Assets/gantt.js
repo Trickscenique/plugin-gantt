@@ -112,7 +112,7 @@ KB.on('dom.ready', function () {
 
 	// Fix search filter error -> missing plugin name
 	let plugin = document.getElementById('form-plugin');
-	if (typeof plugin != null) {
+	if (typeof plugin !== null) {
 		plugin.value = getQueryParams('plugin', window.location.href);
 	}
 });
