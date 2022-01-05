@@ -12,7 +12,7 @@ KB.on('dom.ready', function () {
 				tasks[i].name = tasks[i].title;
 				tasks[i].progress = parseInt(tasks[i].progress);
 				if (tasks[i].progress < 0) {
-					tasks[i].progress = 0;
+					tasks[i].progress = 1;
 				}
 				tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
 			}
@@ -66,7 +66,9 @@ KB.on('dom.ready', function () {
 		let container = document.getElementById('gantt-chart');
 		let config = container.dataset;
 		chartConfig = config;
-		let chart = new Gantt('#gantt-chart', GanttUtils.formatTasks(config.records), {
+
+		let tasks = GanttUtils.formatTasks(config.records);
+		let chart = new Gantt('#gantt-chart', tasks, {
 			column_width: 30,
 			step: 24,
 			view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
@@ -90,14 +92,14 @@ KB.on('dom.ready', function () {
 			//},
 		});
 
-		$(function () {
-			$('.btn-gantt-chart').on('click', function () {
-				$btn = $(this);
-				var mode = $btn.text();
-				chart.change_view_mode(mode);
-				$btn.parent().parent().find('button').removeClass('active');
-				$btn.addClass('active');
-			});
+		$('.btn-gantt-chart').on('click', function () {
+			console.log('papapadf');
+			$btn = $(this);
+			var mode = $btn.text();
+
+			chart.change_view_mode(mode);
+			$btn.parent().parent().find('button').removeClass('active');
+			$btn.addClass('active');
 		});
 	}
 
