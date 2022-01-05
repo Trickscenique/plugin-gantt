@@ -91,6 +91,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
     {
         $links = $this->taskLinkModel->getAll($id);
 
+        print_r($links);
         $result = array();
 
         foreach ($links as $link) {
