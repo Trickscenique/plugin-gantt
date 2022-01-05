@@ -25,7 +25,7 @@ const GanttUtils = {
 		record['end_date'] = record.end.toString();
 		$.ajax({
 			cache: false,
-			url: config['save-url'],
+			url: config.saveUrl,
 			contentType: 'application/json',
 			type: 'POST',
 			processData: false,
