@@ -22,11 +22,15 @@ class TaskGanttController extends BaseController
     {
         $project = $this->getProject();
         $search = $this->helper->projectHeader->getSearchQuery($project);
+
+        //Fix search filter error -> missing plugin name
+        $search = str_replace("&plugin=&", "&plugin=gantt&", $search);
+
         $sorting = $this->request->getStringParam('sorting', '');
         $filter = $this->taskLexer->build($search)->withFilter(new TaskProjectFilter($project['id']));
 
-        if($sorting === '') {
-          $sorting = $this->configModel->get('gantt_task_sort', 'board');
+        if ($sorting === '') {
+            $sorting = $this->configModel->get('gantt_task_sort', 'board');
         }
 
         if ($sorting === 'date') {
