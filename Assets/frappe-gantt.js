@@ -1629,6 +1629,8 @@ var Gantt = (function () {
 				y_on_start = e.offsetY;
 
 				parent_bar_id = bar_wrapper.getAttribute('data-id');
+
+				this.initial_id = parent_bar_id;
 				const ids = [parent_bar_id, ...this.get_all_dependent_tasks(parent_bar_id)];
 				bars = ids.map((id) => this.get_bar(id));
 
@@ -1752,20 +1754,18 @@ var Gantt = (function () {
 
 		get_all_dependent_tasks(task_id) {
 			let out = [];
-			let to_process = [task_id];
-			while (to_process.length > 0) {
-				const deps = to_process.reduce((acc, curr) => {
-					if (curr != acc) {
-						acc = acc.concat(this.dependency_map[curr]);
-						return acc;
+			for (let task of this.tasks) {
+				if (task.id == task_id) {
+					for (let dep of task.dependencies) {
+						out.push(dep);
+						if (dep != this.initial_id) {
+							out.concat(this.get_all_dependent_tasks(dep));
+						}
 					}
-				}, []);
-
-				out = out.concat(deps);
-				to_process = deps.filter((d) => !to_process.includes(d));
+					out.concat(task.dependencies);
+				}
 			}
-
-			return out.filter(Boolean);
+			return out;
 		}
 
 		get_snap_position(dx) {
