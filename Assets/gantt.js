@@ -114,8 +114,6 @@ KB.on('dom.ready', function () {
 	let plugin = document.getElementById('form-plugin');
 	console.log(plugin);
 	if (typeof plugin != null) {
-		if (plugin.nodeValue == '') {
-			plugin.nodeValue = getQueryParams('plugin', window.location.href);
-		}
+		plugin.value = getQueryParams('plugin', window.location.href);
 	}
 });
