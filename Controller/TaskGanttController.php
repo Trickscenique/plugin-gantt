@@ -25,7 +25,7 @@ class TaskGanttController extends BaseController
 
         //Fix search filter error -> missing plugin name
         $search = str_replace("&plugin=&", "&plugin=gantt&", $search);
-
+        print_r($search);
         $sorting = $this->request->getStringParam('sorting', '');
         $filter = $this->taskLexer->build($search)->withFilter(new TaskProjectFilter($project['id']));
 
