@@ -1632,6 +1632,7 @@ var Gantt = (function () {
 
 				this.initial_id = parent_bar_id;
 				const ids = [parent_bar_id, ...this.get_all_dependent_tasks(parent_bar_id)];
+				console.log(ids);
 				bars = ids.map((id) => this.get_bar(id));
 
 				this.bar_being_dragged = parent_bar_id;
@@ -1832,7 +1833,6 @@ var Gantt = (function () {
 		}
 
 		trigger_event(event, args) {
-			console.log(event);
 			if (this.options['on_' + event]) {
 				this.options['on_' + event].apply(null, args);
 			}
