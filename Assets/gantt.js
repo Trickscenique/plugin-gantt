@@ -23,6 +23,7 @@ const GanttUtils = {
 	saveRecord: (record, config) => {
 		record['start_date'] = record.start;
 		record['end_date'] = record.end;
+		console.log(record.end.toString());
 		$.ajax({
 			cache: false,
 			url: config['save-url'],
