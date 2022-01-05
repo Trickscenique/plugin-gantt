@@ -74,18 +74,18 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
-			on_click: function (task) {
-				GanttUtils.onClick(task);
-			},
+			//on_click: function (task) {
+			//	GanttUtils.onClick(task);
+			//},
 			on_date_change: function (task, start, end) {
 				GanttUtils.onDateChange(task, start, end);
 			},
 			on_progress_change: function (task, progress) {
 				GanttUtils.onProgressChange(task, progress);
 			},
-			on_view_change: function (mode) {
-				GanttUtils.onViewChange(mode);
-			},
+			//on_view_change: function (mode) {
+			//	GanttUtils.onViewChange(mode);
+			//},
 		});
 
 		$(function () {
