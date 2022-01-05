@@ -101,27 +101,30 @@ KB.on('dom.ready', function () {
 			});
 		});
 	}
-});
 
-const getQueryParams = (params, url) => {
-	let href = url;
-	// this is an expression to get query strings
-	let regexp = new RegExp('[?&]' + params + '=([^&#]*)', 'i');
-	let qString = regexp.exec(href);
-	return qString ? qString[1] : null;
-};
+	const getQueryParams = (params, url) => {
+		let href = url;
+		// this is an expression to get query strings
+		let regexp = new RegExp('[?&]' + params + '=([^&#]*)', 'i');
+		let qString = regexp.exec(href);
+		return qString ? qString[1] : null;
+	};
 
-// Fix search filter error -> missing plugin name
-$(document).on('submit', 'form.search', function (e) {
-	e.preventDefault();
-	console.log(e);
-	let plugin = document.getElementById('form-plugin');
+	// Fix search filter error -> missing plugin name
+	let formSearch = document.querySelectorAll('form.search');
+	formSearch.forEach((form) => {
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			console.log(e);
+			let plugin = document.getElementById('form-plugin');
 
-	if (typeof plugin != null) {
-		if (plugin.nodeValue == '') {
-			plugin.nodeValue = getQueryParams('plugin', window.location.href);
-		}
-	}
+			if (typeof plugin != null) {
+				if (plugin.nodeValue == '') {
+					plugin.nodeValue = getQueryParams('plugin', window.location.href);
+				}
+			}
 
-	e.target.submit();
+			form.submit();
+		});
+	});
 });
