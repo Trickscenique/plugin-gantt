@@ -756,9 +756,7 @@ var Gantt = (function () {
 				const diff = date_utils.diff(task_start, gantt_start, 'day');
 				x = (diff * column_width) / 30;
 			}
-			if (x < 0) {
-				x = x * -1;
-			}
+
 			return x;
 		}
 

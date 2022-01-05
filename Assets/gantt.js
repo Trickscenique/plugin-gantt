@@ -80,7 +80,6 @@ KB.on('dom.ready', function () {
 					bar_height: 25,
 					bar_corner_radius: 3,
 					arrow_curve: 5,
-					view_mode: 'Day',
 					date_format: 'YYYY-MM-DD',
 					popup_trigger: 'mouseover',
 					//on_click: function (task) {
