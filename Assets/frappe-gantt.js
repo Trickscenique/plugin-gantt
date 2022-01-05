@@ -1765,6 +1765,7 @@ var Gantt = (function () {
 					out.concat(task.dependencies);
 				}
 			}
+			out.push(task_id);
 			return out;
 		}
 
