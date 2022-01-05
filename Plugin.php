@@ -26,7 +26,7 @@ class Plugin extends Base
 //        $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/chart.js'));
 
         $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/frappe-gantt.min.js'));
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/frappe-gantt.gantt.css'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/frappe-gantt.css'));
 
         $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/gantt.js'));
         $this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/gantt.css'));
