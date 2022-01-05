@@ -486,6 +486,9 @@ var Gantt = (function () {
 			}
 			this.progress_width =
 				this.gantt.options.column_width * this.duration * (this.task.progress / 100) || 0;
+			if (this.progress_width < 0) {
+				this.progress_width = this.progress_width * -1;
+			}
 			this.group = createSVG('g', {
 				class: 'bar-wrapper ' + (this.task.custom_class || ''),
 				'data-id': this.task.id,
