@@ -29,7 +29,7 @@ class Plugin extends Base
         $this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/frappe-gantt.css'));
 
         $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/gantt.js'));
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/gantt.css'));
+        //$this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/gantt.css'));
 
         $this->container['projectGanttFormatter'] = $this->container->factory(function ($c) {
             return new ProjectGanttFormatter($c);

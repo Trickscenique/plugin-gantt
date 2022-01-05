@@ -27,8 +27,15 @@ const GanttUtils = {
 		});
 	},
 	onClick: (task) => {},
-	onDateChange: (task, start, end) => {},
-	onProgressChange: (task, progress) => {},
+	onDateChange: (task, start, end) => {
+		task.start = start;
+		task.end = end;
+		console.log(task);
+	},
+	onProgressChange: (task, progress) => {
+		task.progress = progress;
+		console.log(task);
+	},
 	onViewChange: (mode) => {},
 };
 
@@ -60,7 +67,18 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
-			custom_popup_html: null,
+			custom_popup_html: function (task) {
+				// the task object will contain the updated
+				// dates and progress value
+				const end_date = task._end.format('MMM D');
+				return `
+                  <div class="details-container">
+                    <h5>${task.name}</h5>
+                    <p>Expected to finish by ${end_date}</p>
+                    <p>${task.progress}% completed!</p>
+                  </div>
+                `;
+			},
 			on_click: function (task) {
 				GanttUtils.onClick(task);
 			},
