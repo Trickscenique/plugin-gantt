@@ -14,7 +14,7 @@ class Plugin extends Base
     {
         $this->route->addRoute('gantt/:project_id', 'TaskGanttController', 'show', 'plugin');
         $this->route->addRoute('gantt/:project_id/sort/:sorting', 'TaskGanttController', 'show', 'plugin');
-        
+
         $this->projectAccessMap->add('ProjectGanttController', 'save', Role::PROJECT_MANAGER);
         $this->projectAccessMap->add('TaskGanttController', 'save', Role::PROJECT_MEMBER);
 
@@ -23,7 +23,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:project-list:menu:after', 'Gantt:project_list/menu');
         $this->template->hook->attach('template:config:sidebar', 'Gantt:config/sidebar');
 
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/chart.js'));
+//        $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/chart.js'));
         $this->hook->on('template:layout:js', array('template' => 'plugins/Gantt/Assets/gantt.js'));
         $this->hook->on('template:layout:css', array('template' => 'plugins/Gantt/Assets/gantt.css'));
 
