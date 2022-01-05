@@ -563,7 +563,7 @@ KB.on('dom.ready', function () {
 	});
 
 	if (KB.exists('#gantt-chart')) {
-		let container = document.getElementById('#gantt-chart');
+		let container = document.getElementById('gantt-chart');
 		let config = container.dataset;
 		let utils = new GanttUtils();
 		var chart = new Gantt('#gantt-chart', utils.prepareData(config.records), {});
