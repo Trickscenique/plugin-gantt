@@ -31,11 +31,10 @@ const GanttUtils = {
 			data: JSON.stringify(record),
 		});
 	},
-	onClick: (task) => {
+	onClick: function (task) {
 		if (typeof task.onClickUrl != 'undefined') {
 			console.log(task.onClickUrl);
 		}
-		return;
 	},
 	onDateChange: (task, start, end) => {
 		task.start = start;
@@ -78,7 +77,7 @@ KB.on('dom.ready', function () {
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
 			on_click: function (task) {
-				GanttUtils.onClick(task);
+				return GanttUtils.onClick(task);
 			},
 			on_date_change: function (task, start, end) {
 				GanttUtils.onDateChange(task, start, end);
