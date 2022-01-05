@@ -11,7 +11,7 @@ KB.on('dom.ready', function () {
 				tasks[i].end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2]);
 				tasks[i].name = tasks[i].title;
 				tasks[i].progress = parseInt(tasks[i].progress);
-				if (tasks[i].progress < 0) {
+				if (tasks[i].progress <= 0) {
 					tasks[i].progress = 1;
 				}
 				tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
