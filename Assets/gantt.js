@@ -67,8 +67,8 @@ KB.on('dom.ready', function () {
 		let config = container.dataset;
 		chartConfig = config;
 
-		new Promise(() => {
-			return GanttUtils.formatTasks(config.records);
+		new Promise((resolve) => {
+			return resolve(GanttUtils.formatTasks(config.records));
 		})
 			.then((tasks) => {
 				return new Gantt('#gantt-chart', tasks, {
