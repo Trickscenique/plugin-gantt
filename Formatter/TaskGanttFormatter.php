@@ -79,7 +79,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             'date_due_not_defined' => empty($task['date_due']),
         );
 
-        if ($this->projectRole->canUpdateTask($task)) {
+        if ($this->helper->projectRole->canUpdateTask($task)) {
             $array['onClickUrl'] = $this->helper->url->href('TaskModificationController', 'edit', array('project_id' => $task['project_id'], 'task_id' => $task['id']));
         }
         return $array;
