@@ -10,7 +10,7 @@ const GanttUtils = {
 			let end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2], 0, 0, 0, 0);
 			tasks[i].end = end;
 			tasks[i].name = tasks[i].title;
-            tasks[i].progress. = parseInt(tasks[i].progress);
+			tasks[i].progress = parseInt(tasks[i].progress);
 			tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
 		}
 
