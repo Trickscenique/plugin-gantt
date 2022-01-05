@@ -12,6 +12,9 @@ const GanttUtils = {
 			tasks[i].end = end;
 			tasks[i].name = tasks[i].title;
 			tasks[i].progress = parseInt(tasks[i].progress);
+			if (tasks[i].progress < 0) {
+				tasks[i].progress = 0;
+			}
 			tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
 		}
 
