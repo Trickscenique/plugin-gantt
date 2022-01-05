@@ -75,6 +75,7 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
+			popup_trigger: 'mouseover',
 			//on_click: function (task) {
 			//	return;
 			//},

@@ -57,7 +57,7 @@ class Plugin extends Base
 
     public function getPluginAuthor()
     {
-        return 'Nassim Ourami';
+        return 'Frédéric Guillot, Nassim Ourami';
     }
 
     public function getPluginVersion()
