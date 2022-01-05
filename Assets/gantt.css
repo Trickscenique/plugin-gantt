@@ -147,66 +147,66 @@ div.ganttview-progress-bar {
 	margin-top: 10px !important;
 }
 
-.bar-wrapper .color-yellow {
+.bar-wrapper.color-yellow {
 	color: #fbda38;
 }
 
-.bar-wrapper .color-blue {
+.bar-wrapper.color-blue {
 	color: #4694ff;
 }
 
-.bar-wrapper .color-green {
+.bar-wrapper.color-green {
 	color: #4ba975;
 }
 
-.bar-wrapper .color-purple {
+.bar-wrapper.color-purple {
 	color: #856be2;
 }
 
-.bar-wrapper .color-red {
+.bar-wrapper.color-red {
 	color: #ff2a2a;
 }
 
-.bar-wrapper .color-orange {
+.bar-wrapper.color-orange {
 	color: #fb9531;
 }
 
-.bar-wrapper .color-grey {
+.bar-wrapper.color-grey {
 	color: #a09c9c;
 }
 
-.bar-wrapper .color-brown {
+.bar-wrapper.color-brown {
 	color: #ab6333;
 }
 
-.bar-wrapper .color-deep_orange {
+.bar-wrapper.color-deep_orange {
 	color: #e66e0b;
 }
 
-.bar-wrapper .color-dark_grey {
+.bar-wrapper.color-dark_grey {
 	color: #737373;
 }
 
-.bar-wrapper .color-pink {
+.bar-wrapper.color-pink {
 	color: #f546d5;
 }
 
-.bar-wrapper .color-teal {
+.bar-wrapper.color-teal {
 	color: #49b1c1;
 }
 
-.bar-wrapper .color-cyan {
+.bar-wrapper.color-cyan {
 	color: #49cce0;
 }
 
-.bar-wrapper .color-lime {
+.bar-wrapper.color-lime {
 	color: #5fc55f;
 }
 
-.bar-wrapper .color-light_green {
+.bar-wrapper.color-light_green {
 	color: #4af74a;
 }
 
-.bar-wrapper .color-amber {
+.bar-wrapper.color-amber {
 	color: #f1d042;
 }
