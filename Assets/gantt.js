@@ -6,20 +6,9 @@ KB.on('dom.ready', function () {
 		formatTasks: (datas) => {
 			let tasks = JSON.parse(datas);
 
-			for (let i = 0; i < tasks.length; i++) {
-				let start = new Date(
-					tasks[i].start[0],
-					tasks[i].start[1] - 1,
-					tasks[i].start[2],
-					0,
-					0,
-					0,
-					0,
-				);
-				tasks[i].start = start;
-
-				let end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2], 0, 0, 0, 0);
-				tasks[i].end = end;
+			for (let i in tasks) {
+				tasks[i].start = new Date(tasks[i].start[0], tasks[i].start[1] - 1, tasks[i].start[2]);
+				tasks[i].end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2]);
 				tasks[i].name = tasks[i].title;
 				tasks[i].progress = parseInt(tasks[i].progress);
 				if (tasks[i].progress < 0) {
@@ -86,7 +75,6 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
-			popup_trigger: 'hover',
 			//on_click: function (task) {
 			//	return;
 			//},
