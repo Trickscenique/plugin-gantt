@@ -147,66 +147,66 @@ div.ganttview-progress-bar {
 	margin-top: 10px !important;
 }
 
-.bar-wrapper.color-yellow {
-	color: #fbda38;
+.color-yellow {
+	color: #fbda38 !important;
 }
 
-.bar-wrapper.color-blue {
-	color: #4694ff;
+.color-blue {
+	color: #4694ff !important;
 }
 
-.bar-wrapper.color-green {
-	color: #4ba975;
+.color-green {
+	color: #4ba975 !important;
 }
 
-.bar-wrapper.color-purple {
-	color: #856be2;
+.color-purple {
+	color: #856be2 !important;
 }
 
-.bar-wrapper.color-red {
-	color: #ff2a2a;
+.color-red {
+	color: #ff2a2a !important;
 }
 
-.bar-wrapper.color-orange {
-	color: #fb9531;
+.color-orange {
+	color: #fb9531 !important;
 }
 
-.bar-wrapper.color-grey {
-	color: #a09c9c;
+.color-grey {
+	color: #a09c9c !important;
 }
 
-.bar-wrapper.color-brown {
-	color: #ab6333;
+.color-brown {
+	color: #ab6333 !important;
 }
 
-.bar-wrapper.color-deep_orange {
-	color: #e66e0b;
+.color-deep_orange {
+	color: #e66e0b !important;
 }
 
-.bar-wrapper.color-dark_grey {
-	color: #737373;
+.color-dark_grey {
+	color: #737373 !important;
 }
 
-.bar-wrapper.color-pink {
-	color: #f546d5;
+.color-pink {
+	color: #f546d5 !important;
 }
 
-.bar-wrapper.color-teal {
-	color: #49b1c1;
+.color-teal {
+	color: #49b1c1 !important;
 }
 
-.bar-wrapper.color-cyan {
-	color: #49cce0;
+.color-cyan {
+	color: #49cce0 !important;
 }
 
-.bar-wrapper.color-lime {
-	color: #5fc55f;
+.color-lime {
+	color: #5fc55f !important;
 }
 
-.bar-wrapper.color-light_green {
-	color: #4af74a;
+.color-light_green {
+	color: #4af74a !important;
 }
 
-.bar-wrapper.color-amber {
-	color: #f1d042;
+.color-amber {
+	color: #f1d042 !important;
 }
