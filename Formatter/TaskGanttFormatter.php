@@ -91,11 +91,12 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
     {
         $links = $this->taskLinkModel->getAll($id);
 
-        print_r($links);
         $result = array();
 
         foreach ($links as $link) {
-            $result[] = $link['opposite_task_id'];
+            if ($link['task_id'] != $id) {
+                $result[] = $link['task_id'];
+            }
         }
 
         return $result;
