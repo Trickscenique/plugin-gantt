@@ -102,3 +102,42 @@ KB.on('dom.ready', function () {
 		});
 	}
 });
+
+const getQueryParams = (params, url) => {
+	let href = url;
+	// this is an expression to get query strings
+	let regexp = new RegExp('[?&]' + params + '=([^&#]*)', 'i');
+	let qString = regexp.exec(href);
+	return qString ? qString[1] : null;
+};
+
+// TODO: rewrite this code
+Kanboard.Search.prototype.listen = function () {
+	$(document).on('click', '.filter-helper', function (e) {
+		e.preventDefault();
+
+		var filter = $(this).data('filter');
+		var appendFilter = $(this).data('append-filter');
+		var uniqueFilter = $(this).data('unique-filter');
+		var input = $('#form-search');
+
+		if (uniqueFilter) {
+			var attribute = uniqueFilter.substr(0, uniqueFilter.indexOf(':'));
+			filter = input.val().replace(new RegExp('(' + attribute + ':[#a-z0-9]+)', 'g'), '');
+			filter = filter.replace(new RegExp('(' + attribute + ':"(.+)")', 'g'), '');
+			filter = filter.trim();
+			filter += ' ' + uniqueFilter;
+		} else if (appendFilter) {
+			filter = input.val() + ' ' + appendFilter;
+		}
+		let plugin = document.getElementById('form-plugin');
+		if (typeof plugin != null) {
+			if (plugin.nodeValue == '') {
+				plugin.nodeValue = getQueryParams('plugin', window.location.href);
+			}
+		}
+
+		input.val(filter);
+		$('form.search').submit();
+	});
+};
