@@ -103,7 +103,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         foreach ($links as $link) {
             $uiid = $link['task_id'].':'.$id;
             $uiid2 = $id.":".$link['task_id'];
-            if ($link['task_id'] != $id && !in_array($uiid, $this->links) && !in_array($uiid2, $this->links)) {
+            if ($link['task_id'] != $id && !in_array($uiid, $this->links) && !in_array($uiid2, $this->links) && !str_contains("is ", $link['label'])) {
                 $result[] = $link['task_id'];
                 $this->links[] = $uiid2;
                 $this->links[] = $uiid;
