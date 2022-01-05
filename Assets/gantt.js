@@ -17,8 +17,6 @@ const GanttUtils = {
 			}
 			tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
 		}
-
-		console.log(tasks);
 		return tasks;
 	},
 	saveRecord: (record, config) => {
