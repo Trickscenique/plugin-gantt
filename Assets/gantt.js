@@ -76,18 +76,18 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
-			custom_popup_html: function (task) {
-				// the task object will contain the updated
-				// dates and progress value
-				const end_date = task.end.toLocaleDateString();
-				return `
-                  <div class="details-container">
-                    <h5>${task.name}</h5>
-                    <p>Echéance le ${end_date}</p>
-                    <p>${task.progress}% complété!</p>
-                  </div>
-                `;
-			},
+			//custom_popup_html: function (task) {
+			//	// the task object will contain the updated
+			//	// dates and progress value
+			//	const end_date = task.end.toLocaleDateString();
+			//	return `
+			//      <div class="details-container">
+			//        <h5>${task.name}</h5>
+			//        <p>Echéance le ${end_date}</p>
+			//        <p>${task.progress}% complété!</p>
+			//      </div>
+			//    `;
+			//},
 			on_click: function (task) {
 				GanttUtils.onClick(task);
 			},

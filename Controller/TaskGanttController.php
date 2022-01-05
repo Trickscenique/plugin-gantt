@@ -35,6 +35,7 @@ class TaskGanttController extends BaseController
             $filter->getQuery()->asc('column_position')->asc(TaskModel::TABLE.'.position');
         }
 
+
         $this->response->html($this->helper->layout->app('Gantt:task_gantt/show', array(
             'project' => $project,
             'title' => $project['name'],
@@ -43,6 +44,7 @@ class TaskGanttController extends BaseController
             'tasks' => $filter->format($this->taskGanttFormatter),
         )));
     }
+
 
     /**
      * Save new task start date and due date
