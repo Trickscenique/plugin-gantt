@@ -1753,10 +1753,12 @@ var Gantt = (function () {
 		get_all_dependent_tasks(task_id) {
 			let out = [];
 			let to_process = [task_id];
-			while (to_process.length) {
+			while (to_process.length > 0) {
 				const deps = to_process.reduce((acc, curr) => {
-					acc = acc.concat(this.dependency_map[curr]);
-					return acc;
+					if (curr != acc) {
+						acc = acc.concat(this.dependency_map[curr]);
+						return acc;
+					}
 				}, []);
 
 				out = out.concat(deps);
