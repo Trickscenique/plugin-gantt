@@ -32,6 +32,7 @@ const GanttUtils = {
 		});
 	},
 	onClick: function (task) {
+		console.log(task);
 		if (typeof task.onClickUrl != 'undefined') {
 			console.log(task.onClickUrl);
 		}
