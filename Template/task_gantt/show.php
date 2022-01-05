@@ -18,7 +18,7 @@
                 <button type="button" class="btn dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Half Day</button>
             </li>
             <li>
-                <button type="button" class="btn dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Day</button>
+                <button type="button" class="btn dropdown-menu dropdown-menu-link-icon btn-gantt-chart active">Day</button>
             </li>
             <li>
                 <button type="button" class="btn dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Week</button>
@@ -29,8 +29,12 @@
 
         </ul>
     </div>
+    <span style="display: none;"> <?= $this->modal->large('edit', t('Edit the task'), 'TaskModificationController', 'edit', array('project_id' => $project['id'])) ?></span>
 
     <?php if (! empty($tasks)): ?>
+
+
+
         <svg
             id="gantt-chart"
             data-records='<?= json_encode($tasks, JSON_HEX_APOS) ?>'

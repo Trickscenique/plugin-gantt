@@ -54,7 +54,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         $start = $task['date_started'] ?: time();
         $end = $task['date_due'] ?: $start;
 
-        return array(
+        $array =  array(
             'type' => 'task',
             'id' => $task['id'],
             'title' => $task['title'],
@@ -78,6 +78,11 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             'date_started_not_defined' => empty($task['date_started']),
             'date_due_not_defined' => empty($task['date_due']),
         );
+
+        if ($this->projectRole->canUpdateTask($task)) {
+            $array['onClickUrl'] = $this->helper->url->href('TaskModificationController', 'edit', array('project_id' => $task['project_id'], 'task_id' => $task['id']));
+        }
+        return $array;
     }
 
     /**
