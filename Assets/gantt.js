@@ -9,6 +9,9 @@ const GanttUtils = {
 
 			let end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2], 0, 0, 0, 0);
 			tasks[i].end = end;
+			tasks[i].name = task[i].title;
+			tasks[i].progress.replace('%', '');
+			tasks[i].custom_class = 'task-board.color-' + tasks[i].color.name.toLowerCase();
 		}
 
 		return tasks;
