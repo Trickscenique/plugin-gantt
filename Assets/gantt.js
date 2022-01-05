@@ -21,9 +21,8 @@ const GanttUtils = {
 		return tasks;
 	},
 	saveRecord: (record, config) => {
-		record['start_date'] = record.start;
-		record['end_date'] = record.end;
-		console.log(record.end.toString());
+		record['start_date'] = record.start.toString();
+		record['end_date'] = record.end.toString();
 		$.ajax({
 			cache: false,
 			url: config['save-url'],
@@ -66,6 +65,7 @@ KB.on('dom.ready', function () {
 	if (KB.exists('#gantt-chart')) {
 		let container = document.getElementById('gantt-chart');
 		let config = container.dataset;
+		console.log(config);
 		chartConfig = config;
 		let chart = new Gantt('#gantt-chart', GanttUtils.formatTasks(config.records), {
 			column_width: 30,
