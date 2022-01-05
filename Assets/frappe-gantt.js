@@ -1639,6 +1639,7 @@ var Gantt = (function () {
 
 				bars.forEach((bar) => {
 					const $bar = bar.$bar;
+					console.log($bar);
 					$bar.ox = $bar.getX();
 					$bar.oy = $bar.getY();
 					$bar.owidth = $bar.getWidth();
