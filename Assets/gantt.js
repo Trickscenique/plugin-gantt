@@ -113,6 +113,8 @@ const getQueryParams = (params, url) => {
 
 // Fix search filter error -> missing plugin name
 $(document).on('submit', 'form.search', function (e) {
+	e.preventDefault();
+	console.log(e);
 	let plugin = document.getElementById('form-plugin');
 
 	if (typeof plugin != null) {
@@ -120,4 +122,6 @@ $(document).on('submit', 'form.search', function (e) {
 			plugin.nodeValue = getQueryParams('plugin', window.location.href);
 		}
 	}
+
+	e.target.submit();
 });
