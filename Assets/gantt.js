@@ -101,5 +101,15 @@ KB.on('dom.ready', function () {
 				GanttUtils.onViewChange(mode);
 			},
 		});
+
+		$(function () {
+			$('.btn-gantt-chart').on('click', function () {
+				$btn = $(this);
+				var mode = $btn.text();
+				chart.change_view_mode(mode);
+				$btn.parent().parent().find('button').removeClass('active');
+				$btn.addClass('active');
+			});
+		});
 	}
 });

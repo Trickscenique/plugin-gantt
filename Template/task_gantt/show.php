@@ -11,6 +11,22 @@
             <li>
                 <?= $this->modal->large('plus', t('Add task'), 'TaskCreationController', 'show', array('project_id' => $project['id'])) ?>
             </li>
+            <li>
+                <button type="button" class="dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Quarter Day</button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Half Day</button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Day</button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-menu dropdown-menu-link-icon btn-gantt-chart active">Week</button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-menu dropdown-menu-link-icon btn-gantt-chart">Month</button>
+            </li>
+
         </ul>
     </div>
 
