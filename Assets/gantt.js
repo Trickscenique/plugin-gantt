@@ -111,9 +111,10 @@ const getQueryParams = (params, url) => {
 	return qString ? qString[1] : null;
 };
 
-// TODO: rewrite this code
-$(document).on('submit', '#form.search', function (e) {
+// Fix search filter error -> missing plugin name
+$(document).on('submit', 'form.search', function (e) {
 	let plugin = document.getElementById('form-plugin');
+
 	if (typeof plugin != null) {
 		if (plugin.nodeValue == '') {
 			plugin.nodeValue = getQueryParams('plugin', window.location.href);
