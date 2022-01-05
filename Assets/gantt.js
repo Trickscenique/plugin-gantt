@@ -10,7 +10,7 @@ const GanttUtils = {
 			let end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2], 0, 0, 0, 0);
 			tasks[i].end = end;
 			tasks[i].name = tasks[i].title;
-			tasks[i].progress.replace('%', '');
+            tasks[i].progress. = parseInt(tasks[i].progress);
 			tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
 		}
 
@@ -70,12 +70,12 @@ KB.on('dom.ready', function () {
 			custom_popup_html: function (task) {
 				// the task object will contain the updated
 				// dates and progress value
-				const end_date = task._end.format('MMM D');
+				const end_date = task.end.format('D MMM');
 				return `
                   <div class="details-container">
                     <h5>${task.name}</h5>
-                    <p>Expected to finish by ${end_date}</p>
-                    <p>${task.progress}% completed!</p>
+                    <p>Echéance le ${end_date}</p>
+                    <p>${task.progress}% complété!</p>
                   </div>
                 `;
 			},
