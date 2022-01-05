@@ -72,6 +72,7 @@ KB.on('dom.ready', function () {
 			return resolve(tasks);
 		})
 			.then((tasks) => {
+				console.log(tasks);
 				return new Gantt('#gantt-chart', tasks, {
 					column_width: 30,
 					step: 24,
