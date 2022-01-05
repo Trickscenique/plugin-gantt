@@ -111,21 +111,11 @@ KB.on('dom.ready', function () {
 	};
 
 	// Fix search filter error -> missing plugin name
-	let formSearch = document.querySelectorAll('form.search');
-	formSearch.forEach((form) => {
-		console.log(form);
-		form.addEventListener('submit', (e) => {
-			e.stopImmediatePropagation();
-			console.log(e);
-			let plugin = document.getElementById('form-plugin');
+	let plugin = document.getElementById('form-plugin');
 
-			if (typeof plugin != null) {
-				if (plugin.nodeValue == '') {
-					plugin.nodeValue = getQueryParams('plugin', window.location.href);
-				}
-			}
-
-			form.submit();
-		});
-	});
+	if (typeof plugin != null) {
+		if (plugin.nodeValue == '') {
+			plugin.nodeValue = getQueryParams('plugin', window.location.href);
+		}
+	}
 });
