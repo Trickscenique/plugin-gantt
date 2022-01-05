@@ -49,6 +49,17 @@ KB.on('dom.ready', function () {
 		let config = container.dataset;
 
 		let chart = new Gantt('#gantt-chart', GanttUtils.formatTasks(config.records), {
+			header_height: 50,
+			column_width: 30,
+			step: 24,
+			view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+			bar_height: 20,
+			bar_corner_radius: 3,
+			arrow_curve: 5,
+			padding: 18,
+			view_mode: 'Day',
+			date_format: 'YYYY-MM-DD',
+			custom_popup_html: null,
 			on_click: function (task) {
 				GanttUtils.onClick(task);
 			},
