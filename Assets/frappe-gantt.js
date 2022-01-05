@@ -472,12 +472,18 @@ var Gantt = (function () {
 		prepare_values() {
 			this.invalid = this.task.invalid;
 			this.height = this.gantt.options.bar_height;
+			if (this.height < 0) {
+				this.height = this.height * -1;
+			}
 			this.x = this.compute_x();
 			this.y = this.compute_y();
 			this.corner_radius = this.gantt.options.bar_corner_radius;
 			this.duration =
 				date_utils.diff(this.task._end, this.task._start, 'hour') / this.gantt.options.step;
 			this.width = this.gantt.options.column_width * this.duration;
+			if (this.width < 0) {
+				this.width = this.width * -1;
+			}
 			this.progress_width =
 				this.gantt.options.column_width * this.duration * (this.task.progress / 100) || 0;
 			this.group = createSVG('g', {
