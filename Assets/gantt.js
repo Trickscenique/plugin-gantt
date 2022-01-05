@@ -67,40 +67,44 @@ KB.on('dom.ready', function () {
 		let config = container.dataset;
 		chartConfig = config;
 
-		let tasks = GanttUtils.formatTasks(config.records);
-		let chart = new Gantt('#gantt-chart', tasks, {
-			column_width: 30,
-			step: 24,
-			view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
-			bar_height: 25,
-			bar_corner_radius: 3,
-			arrow_curve: 5,
-			view_mode: 'Day',
-			date_format: 'YYYY-MM-DD',
-			popup_trigger: 'mouseover',
-			//on_click: function (task) {
-			//	return;
-			//},
-			on_date_change: function (task, start, end) {
-				GanttUtils.onDateChange(task, start, end);
-			},
-			on_progress_change: function (task, progress) {
-				GanttUtils.onProgressChange(task, progress);
-			},
-			//on_view_change: function (mode) {
-			//	GanttUtils.onViewChange(mode);
-			//},
-		});
+		new Promise(() => {
+			return GanttUtils.formatTasks(config.records);
+		})
+			.then((tasks) => {
+				return new Gantt('#gantt-chart', tasks, {
+					column_width: 30,
+					step: 24,
+					view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+					bar_height: 25,
+					bar_corner_radius: 3,
+					arrow_curve: 5,
+					view_mode: 'Day',
+					date_format: 'YYYY-MM-DD',
+					popup_trigger: 'mouseover',
+					//on_click: function (task) {
+					//	return;
+					//},
+					on_date_change: function (task, start, end) {
+						GanttUtils.onDateChange(task, start, end);
+					},
+					on_progress_change: function (task, progress) {
+						GanttUtils.onProgressChange(task, progress);
+					},
+					//on_view_change: function (mode) {
+					//	GanttUtils.onViewChange(mode);
+					//},
+				});
+			})
+			.then((chart) => {
+				$('.btn-gantt-chart').on('click', function () {
+					let $btn = $(this);
+					var mode = $btn.text();
 
-		$('.btn-gantt-chart').on('click', function () {
-			console.log('papapadf');
-			$btn = $(this);
-			var mode = $btn.text();
-
-			chart.change_view_mode(mode);
-			$btn.parent().parent().find('button').removeClass('active');
-			$btn.addClass('active');
-		});
+					chart.change_view_mode(mode);
+					$btn.parent().parent().find('button').removeClass('active');
+					$btn.addClass('active');
+				});
+			});
 	}
 
 	const getQueryParams = (params, url) => {
