@@ -77,9 +77,9 @@ KB.on('dom.ready', function () {
 			arrow_curve: 5,
 			view_mode: 'Day',
 			date_format: 'YYYY-MM-DD',
-			on_click: function (task) {
-				return GanttUtils.onClick(task);
-			},
+			//on_click: function (task) {
+			//	return GanttUtils.onClick(task);
+			//},
 			on_date_change: function (task, start, end) {
 				GanttUtils.onDateChange(task, start, end);
 			},
