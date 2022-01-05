@@ -70,7 +70,8 @@ KB.on('dom.ready', function () {
 			custom_popup_html: function (task) {
 				// the task object will contain the updated
 				// dates and progress value
-				const end_date = task.end.format('D MMM');
+				console.log(task);
+				const end_date = task.end.getDate();
 				return `
                   <div class="details-container">
                     <h5>${task.name}</h5>
