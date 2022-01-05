@@ -21,6 +21,8 @@ const GanttUtils = {
 		return tasks;
 	},
 	saveRecord: (record, config) => {
+		record['start_date'] = record.start;
+		record['end_date'] = record.end;
 		$.ajax({
 			cache: false,
 			url: config['save-url'],
