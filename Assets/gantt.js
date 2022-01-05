@@ -1,4 +1,5 @@
 // Based on jQuery.ganttView v.0.8.8 Copyright (c) 2010 JC Grubbs - jc.grubbs@devmynd.com - MIT License
+let chartConfig;
 const GanttUtils = {
 	formatTasks: (datas) => {
 		let tasks = JSON.parse(datas);
@@ -31,10 +32,12 @@ const GanttUtils = {
 		task.start = start;
 		task.end = end;
 		console.log(task);
+		GanttUtils.saveRecord(task, chartConfig);
 	},
 	onProgressChange: (task, progress) => {
 		task.progress = progress;
 		console.log(task);
+		GanttUtils.saveRecord(task, chartConfig);
 	},
 	onViewChange: (mode) => {},
 };
@@ -57,7 +60,7 @@ KB.on('dom.ready', function () {
 	if (KB.exists('#gantt-chart')) {
 		let container = document.getElementById('gantt-chart');
 		let config = container.dataset;
-
+		chartConfig = config;
 		let chart = new Gantt('#gantt-chart', GanttUtils.formatTasks(config.records), {
 			column_width: 30,
 			step: 24,
@@ -70,8 +73,7 @@ KB.on('dom.ready', function () {
 			custom_popup_html: function (task) {
 				// the task object will contain the updated
 				// dates and progress value
-				console.log(task);
-				const end_date = task.end.getDate();
+				const end_date = task.end.toLocaleDateString();
 				return `
                   <div class="details-container">
                     <h5>${task.name}</h5>
