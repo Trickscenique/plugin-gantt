@@ -112,32 +112,11 @@ const getQueryParams = (params, url) => {
 };
 
 // TODO: rewrite this code
-Kanboard.Search.prototype.listen = function () {
-	$(document).on('click', '.filter-helper', function (e) {
-		e.preventDefault();
-
-		var filter = $(this).data('filter');
-		var appendFilter = $(this).data('append-filter');
-		var uniqueFilter = $(this).data('unique-filter');
-		var input = $('#form-search');
-
-		if (uniqueFilter) {
-			var attribute = uniqueFilter.substr(0, uniqueFilter.indexOf(':'));
-			filter = input.val().replace(new RegExp('(' + attribute + ':[#a-z0-9]+)', 'g'), '');
-			filter = filter.replace(new RegExp('(' + attribute + ':"(.+)")', 'g'), '');
-			filter = filter.trim();
-			filter += ' ' + uniqueFilter;
-		} else if (appendFilter) {
-			filter = input.val() + ' ' + appendFilter;
+$(document).on('submit', '#form.search', function (e) {
+	let plugin = document.getElementById('form-plugin');
+	if (typeof plugin != null) {
+		if (plugin.nodeValue == '') {
+			plugin.nodeValue = getQueryParams('plugin', window.location.href);
 		}
-		let plugin = document.getElementById('form-plugin');
-		if (typeof plugin != null) {
-			if (plugin.nodeValue == '') {
-				plugin.nodeValue = getQueryParams('plugin', window.location.href);
-			}
-		}
-
-		input.val(filter);
-		$('form.search').submit();
-	});
-};
+	}
+});
