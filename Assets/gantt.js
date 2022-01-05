@@ -1,55 +1,64 @@
 // Based on jQuery.ganttView v.0.8.8 Copyright (c) 2010 JC Grubbs - jc.grubbs@devmynd.com - MIT License
-let chartConfig;
-const GanttUtils = {
-	formatTasks: (datas) => {
-		let tasks = JSON.parse(datas);
-
-		for (let i = 0; i < tasks.length; i++) {
-			let start = new Date(tasks[i].start[0], tasks[i].start[1] - 1, tasks[i].start[2], 0, 0, 0, 0);
-			tasks[i].start = start;
-
-			let end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2], 0, 0, 0, 0);
-			tasks[i].end = end;
-			tasks[i].name = tasks[i].title;
-			tasks[i].progress = parseInt(tasks[i].progress);
-			if (tasks[i].progress < 0) {
-				tasks[i].progress = 0;
-			}
-			tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
-		}
-		return tasks;
-	},
-	saveRecord: (record, config) => {
-		record['start_date'] = record.start.toString();
-		record['end_date'] = record.end.toString();
-		$.ajax({
-			cache: false,
-			url: config.saveUrl,
-			contentType: 'application/json',
-			type: 'POST',
-			processData: false,
-			data: JSON.stringify(record),
-		});
-	},
-	//	onClick: function (task) {
-	//		console.log(task);
-	//		if (typeof task.onClickUrl != 'undefined') {
-	//			console.log(task.onClickUrl);
-	//		}
-	//	},
-	onDateChange: (task, start, end) => {
-		task.start = start;
-		task.end = end;
-		GanttUtils.saveRecord(task, chartConfig);
-	},
-	onProgressChange: (task, progress) => {
-		task.progress = progress;
-		GanttUtils.saveRecord(task, chartConfig);
-	},
-	onViewChange: (mode) => {},
-};
 
 KB.on('dom.ready', function () {
+	let chartConfig;
+	const GanttUtils = {
+		formatTasks: (datas) => {
+			let tasks = JSON.parse(datas);
+
+			for (let i = 0; i < tasks.length; i++) {
+				let start = new Date(
+					tasks[i].start[0],
+					tasks[i].start[1] - 1,
+					tasks[i].start[2],
+					0,
+					0,
+					0,
+					0,
+				);
+				tasks[i].start = start;
+
+				let end = new Date(tasks[i].end[0], tasks[i].end[1] - 1, tasks[i].end[2], 0, 0, 0, 0);
+				tasks[i].end = end;
+				tasks[i].name = tasks[i].title;
+				tasks[i].progress = parseInt(tasks[i].progress);
+				if (tasks[i].progress < 0) {
+					tasks[i].progress = 0;
+				}
+				tasks[i].custom_class = 'color-' + tasks[i].color.name.toLowerCase();
+			}
+			return tasks;
+		},
+		saveRecord: (record, config) => {
+			record['start_date'] = record.start.toString();
+			record['end_date'] = record.end.toString();
+			$.ajax({
+				cache: false,
+				url: config.saveUrl,
+				contentType: 'application/json',
+				type: 'POST',
+				processData: false,
+				data: JSON.stringify(record),
+			});
+		},
+		//	onClick: function (task) {
+		//		console.log(task);
+		//		if (typeof task.onClickUrl != 'undefined') {
+		//			console.log(task.onClickUrl);
+		//		}
+		//	},
+		onDateChange: (task, start, end) => {
+			task.start = start;
+			task.end = end;
+			GanttUtils.saveRecord(task, chartConfig);
+		},
+		onProgressChange: (task, progress) => {
+			task.progress = progress;
+			GanttUtils.saveRecord(task, chartConfig);
+		},
+		//onViewChange: (mode) => {},
+	};
+
 	function goToLink(selector) {
 		if (!KB.modal.isOpen()) {
 			let element = KB.find(selector);
