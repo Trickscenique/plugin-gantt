@@ -63,7 +63,7 @@ class Plugin extends Base
 
     public function getPluginHomepage()
     {
-        return 'https://github.com/kanboard/plugin-gantt';
+        return 'https://github.com/Trickscenique/plugin-gantt';
     }
 
     public function getCompatibleVersion()
