@@ -52,12 +52,12 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('Gantt charts for Kanboard');
+        return t('Gantt Frappe for Kanboard');
     }
 
     public function getPluginAuthor()
     {
-        return 'Frédéric Guillot';
+        return 'Nassim Ourami';
     }
 
     public function getPluginVersion()

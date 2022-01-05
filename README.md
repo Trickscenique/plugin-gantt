@@ -1,21 +1,18 @@
-Gantt Charts
-============
+# Gantt Charts
 
-Gantt charts for Kanboard
+Gantt charts for Kanboard (with Gantt Frappe pluggin)
 
-Author
-------
+## Author
 
 - Frederic Guillot
+- Nassim Ourami
 - License MIT
 
-Requirements
-------------
+## Requirements
 
 - Kanboard > 1.2.3
 
-Installation
-------------
+## Installation
 
 You have the choice between 3 methods:
 
