@@ -21,6 +21,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
      */
     private $columns = array();
 
+    private $links = [];
+
     /**
      * Apply formatter
      *
@@ -99,8 +101,12 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         $result = array();
 
         foreach ($links as $link) {
-            if ($link['task_id'] != $id) {
+            $uiid = $link['task_id'].':'.$id;
+            $uiid2 = $id.":".$link['task_id'];
+            if ($link['task_id'] != $id && !in_array($uiid, $this->links) && !in_array($uiid2, $this->links)) {
                 $result[] = $link['task_id'];
+                $this->links[] = $uiid2;
+                $this->links[] = $uiid;
             }
         }
 
