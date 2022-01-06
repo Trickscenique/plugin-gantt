@@ -38,7 +38,7 @@ KB.on('dom.ready', function () {
 			}
 
 			let bar = container.querySelector('[data-id="' + task.id + '"]');
-			let link = dropdown.querySelector('a.dropdown-menu.dropdown-menu-link-icon');
+			let link = dropdown.querySelector('a.dropdown-menu-link-icon');
 
 			if (!dropdown.dataset.mounted) {
 				let label = bar.querySelector('.bar-label');
