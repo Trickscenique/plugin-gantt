@@ -123,7 +123,7 @@ KB.on('dom.ready', function () {
 					$btn.parent().parent().find('button').removeClass('active');
 					$btn.addClass('active');
 				});
-				DoubleScroll(container.querySelector('.grid'));
+				DoubleScroll(container);
 			});
 	}
 
