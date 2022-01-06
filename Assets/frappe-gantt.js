@@ -641,7 +641,8 @@ var Gantt = (function () {
 				this.group.classList.add('active');
 			});
 
-			$.on(this.group, 'dblclick', (e) => {
+			$.on(this.group, 'contextmenu', (e) => {
+				e.preventDefault();
 				if (this.action_completed) {
 					// just finished a move action, wait for a few seconds
 					return;
