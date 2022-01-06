@@ -29,7 +29,6 @@
 
         </ul>
     </div>
-    <span style="display: none;"> <?= $this->modal->large('edit', t('Edit the task'), 'TaskModificationController', 'edit', array('project_id' => $project['id'])) ?></span>
 
     <?php if (! empty($tasks)): ?>
         <?php foreach ($tasks as $task): ?>

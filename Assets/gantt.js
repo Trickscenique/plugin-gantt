@@ -32,6 +32,7 @@ KB.on('dom.ready', function () {
 		},
 		onClick: function (task) {
 			let dropdown = document.getElementById('dropdown-task-id-' + task.id);
+			console.log(task);
 			if (dropdown !== null) {
 				console.log(dropdown);
 				dropdown.style.display = 'absolute';
