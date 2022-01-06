@@ -30,12 +30,25 @@ KB.on('dom.ready', function () {
 				data: JSON.stringify(record),
 			});
 		},
-		onClick: function (task) {
+		onClick: function (task, container) {
 			let dropdown = document.getElementById('dropdown-task-id-' + task.id);
-			console.log(task);
-			if (dropdown !== null) {
-				console.log(dropdown);
-				dropdown.style.display = 'absolute';
+
+			if (dropdown === null) {
+				return;
+			}
+
+			let bar = container.querySelector('[data-id="' + task.id + '"]');
+			let link = dropdown.querySelector('a.dropdown-menu.dropdown-menu-link-icon');
+
+			if (!dropdown.dataset.mounted) {
+				let label = bar.querySelector('.bar-label');
+				label.appendChild(dropdown);
+				dropdown.dataset.mounted = true;
+				//dropdown.style.display = null;
+			}
+
+			if (link != null) {
+				link.click();
 			}
 		},
 		onDateChange: (task, start, end) => {
@@ -85,7 +98,7 @@ KB.on('dom.ready', function () {
 					date_format: 'YYYY-MM-DD',
 					popup_trigger: 'mouseover',
 					on_click: function (task) {
-						GanttUtils.onClick(task);
+						GanttUtils.onClick(task, container);
 					},
 					on_date_change: function (task, start, end) {
 						GanttUtils.onDateChange(task, start, end);
