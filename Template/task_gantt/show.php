@@ -32,9 +32,9 @@
     <span style="display: none;"> <?= $this->modal->large('edit', t('Edit the task'), 'TaskModificationController', 'edit', array('project_id' => $project['id'])) ?></span>
 
     <?php if (! empty($tasks)): ?>
-
-
-
+        <?php foreach ($tasks as $task): ?>
+            <div id="dropdown-task-id-<?= $task['id'] ?>" style="display: none;">  <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?></div>
+        <?php endforeach ?>
         <svg
             id="gantt-chart"
             data-records='<?= json_encode($tasks, JSON_HEX_APOS) ?>'

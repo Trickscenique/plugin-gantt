@@ -30,12 +30,13 @@ KB.on('dom.ready', function () {
 				data: JSON.stringify(record),
 			});
 		},
-		//	onClick: function (task) {
-		//		console.log(task);
-		//		if (typeof task.onClickUrl != 'undefined') {
-		//			console.log(task.onClickUrl);
-		//		}
-		//	},
+		onClick: function (task) {
+			let dropdown = document.getElementById('dropdown-task-id-' + task.id);
+			if (dropdown !== null) {
+				console.log(dropdown);
+				dropdown.style.display = 'absolute';
+			}
+		},
 		onDateChange: (task, start, end) => {
 			task.start = start;
 			task.end = end;
@@ -82,9 +83,9 @@ KB.on('dom.ready', function () {
 					view_mode: 'Day',
 					date_format: 'YYYY-MM-DD',
 					popup_trigger: 'mouseover',
-					//on_click: function (task) {
-					//	return;
-					//},
+					on_click: function (task) {
+						GanttUtils.onClick(task);
+					},
 					on_date_change: function (task, start, end) {
 						GanttUtils.onDateChange(task, start, end);
 					},
