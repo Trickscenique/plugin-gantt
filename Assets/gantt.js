@@ -1,6 +1,7 @@
 // Based on jQuery.ganttView v.0.8.8 Copyright (c) 2010 JC Grubbs - jc.grubbs@devmynd.com - MIT License
 
 KB.on('dom.ready', function () {
+	let links = {};
 	let chartConfig;
 	const GanttUtils = {
 		formatTasks: (datas) => {
@@ -31,24 +32,26 @@ KB.on('dom.ready', function () {
 			});
 		},
 		onClick: function (task, container) {
-			let dropdown = document.getElementById('dropdown-task-id-' + task.id);
+			if (typeof links['t' + task.id] === 'undefined') {
+				let dropdown = document.getElementById('dropdown-task-id-' + task.id);
 
-			if (dropdown === null) {
-				return;
+				if (dropdown === null) {
+					return;
+				}
+
+				let bar = container.querySelector('[data-id="' + task.id + '"]');
+				links['t' + task.id] = dropdown.querySelector('a.dropdown-menu-link-icon');
+
+				if (!dropdown.dataset.mounted) {
+					let label = bar.querySelector('.bar-label');
+					label.appendChild(dropdown);
+					dropdown.dataset.mounted = true;
+					//dropdown.style.display = null;
+				}
 			}
 
-			let bar = container.querySelector('[data-id="' + task.id + '"]');
-			let link = dropdown.querySelector('a.dropdown-menu-link-icon');
-
-			if (!dropdown.dataset.mounted) {
-				let label = bar.querySelector('.bar-label');
-				label.appendChild(dropdown);
-				dropdown.dataset.mounted = true;
-				//dropdown.style.display = null;
-			}
-
-			if (link != null) {
-				link.click();
+			if (links['t' + task.id] != null) {
+				links['t' + task.id].click();
 			}
 		},
 		onDateChange: (task, start, end) => {
