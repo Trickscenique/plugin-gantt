@@ -110,13 +110,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                     );
             }
 
-
-            $progress = match ($subTask['status_name']) {
-                t('Todo') => 1,
-                t('In progress') => 50,
-                t('Done') => 100,
-            };
-
+            print_r($subTask);
+            die();
 
 
             $bars[] =  array(
