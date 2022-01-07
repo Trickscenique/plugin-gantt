@@ -111,7 +111,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             }
 
 
-            print_r(t('Todo'));
+            print_r(\t('Todo'));
             die();
             $progress = match ($subTask['status_name']) {
                 t('Todo') => 1,
