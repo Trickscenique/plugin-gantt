@@ -1660,7 +1660,7 @@ var Gantt = (function () {
 					if (is_resizing_left) {
 						if (parent_bar_id === bar.task.id) {
 							bar.update_bar_position({
-								x: $bar.ox + $bar.finaldx,
+								x: $bar.finaldx,
 								width: $bar.owidth - $bar.finaldx,
 							});
 						} else {
