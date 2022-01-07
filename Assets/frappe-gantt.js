@@ -1635,7 +1635,7 @@ var Gantt = (function () {
 				const ids = [parent_bar_id, ...this.get_all_dependent_tasks(parent_bar_id)];
 
 				bars = ids.map((id) => this.get_bar(id));
-
+				console.log(ids);
 				this.bar_being_dragged = parent_bar_id;
 
 				bars.forEach((bar) => {
