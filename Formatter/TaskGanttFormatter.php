@@ -110,8 +110,13 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                     );
             }
 
-            print_r($subTask);
-            die();
+
+            $progress = match ($subTask['status_name']) {
+                \Kanboard\Core\Translator::getInstance()->translate('Todo') => 1,
+                \Kanboard\Core\Translator::getInstance()->translate('In progress') => 50,
+                \Kanboard\Core\Translator::getInstance()->translate('Done') => 100,
+            };
+
 
 
             $bars[] =  array(
