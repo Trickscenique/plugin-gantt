@@ -111,11 +111,11 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             }
 
 
-            // $progress = match ($subTask['status']) {
-            //     '0' => 1,
-            //     '1' => 50,
-            //     '2' => 100,
-            // };
+            $progress = match ($subTask['status_name']) {
+                t('Todo') => 1,
+                t('In progress') => 50,
+                t('Done') => 100,
+            };
 
 
 
@@ -128,7 +128,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                 'dependencies' => [],
                 'column_title' => $taskFormated['column_title'],
                 'assignee' => $taskFormated['assignee'],
-                'progress' => $progress ?? 100,
+                'progress' => $progress,
                 'link' => $taskFormated['link'],
                 'color' => $taskFormated['color'],
                 'not_defined' => $taskFormated['not_defined'],
