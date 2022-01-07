@@ -71,7 +71,7 @@ class TaskGanttController extends BaseController
             if ($elements[0] === "task") {
                 $result = $this->taskModificationModel->update($values);
             } else {
-                $result = $this->subTaskModel->update($values);
+                $result = $this->subtaskModel->update($values);
             }
 
             if (! $result) {
