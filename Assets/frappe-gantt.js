@@ -869,7 +869,7 @@ var Gantt = (function () {
 			}
 
 			const start_y =
-				this.gantt.options.header_height +
+				this.gantt.options.header_height -
 				this.gantt.options.bar_height / 2 +
 				(this.gantt.options.padding + this.gantt.options.bar_height) * this.from_task.task._index +
 				this.gantt.options.padding;
