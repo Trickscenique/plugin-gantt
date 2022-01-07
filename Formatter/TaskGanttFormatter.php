@@ -5,7 +5,6 @@ namespace Kanboard\Plugin\Gantt\Formatter;
 use Kanboard\Core\Filter\FormatterInterface;
 use Kanboard\Formatter\BaseFormatter;
 
-error_reporting(E_ALL);
 /**
  * Task Gantt Formatter
  *
@@ -39,7 +38,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
             $subTasks = $this->subtaskModel->getAll($task['id']);
             if (!empty($subTasks)) {
-                $subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated);
+                //$subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated);
             }
 
             $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
