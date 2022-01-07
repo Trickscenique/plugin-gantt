@@ -91,7 +91,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         return $array;
     }
 
-    private function formatSubTasks(array &$bars, array $subTasks, array $taskFormated):array
+    private function formatSubTasks(array &$bars, array $subTasks, array &$taskFormated):array
     {
         foreach ($subTasks as $subTask) {
             $taskFormated['dependencies'][] = "subtask-".$subTask['id'];
