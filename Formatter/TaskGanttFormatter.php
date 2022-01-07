@@ -44,7 +44,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
             $subTasks = $this->subtaskModel->getAll($task['id']);
             if (!empty($subTasks)) {
-                $subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated);
+                $subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated, $task);
             }
 
             $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
@@ -100,7 +100,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         );
     }
 
-    private function formatSubTasks(array $subTasks, array &$taskFormated):array
+    private function formatSubTasks(array $subTasks, array &$taskFormated, array $task):array
     {
         $bars = [];
 
@@ -138,6 +138,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             $bars[] =  array(
                 'type' => 'subtask',
                 'id' => "subtask-".$subTask['id'],
+                'task' => $task,
                 'title' => $subTask['title'],
                 'start' => $start,
                 'end' => $end,

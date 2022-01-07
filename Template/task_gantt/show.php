@@ -31,8 +31,18 @@
     </div>
 
     <?php if (! empty($tasks)): ?>
+
         <?php foreach ($tasks as $task): ?>
-            <div id="dropdown-task-id-<?= $task['id'] ?>" style="display: none;">  <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?></div>
+            <?php $elements = explode("-", $task['id']);
+            $task['id'] = $elements[1];
+            ?>
+            <div id="dropdown-task-id-<?= implode('-', $elements) ?>" style="display: none;">
+            <?php if ($elements[0] == "task"): ?>
+                  <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
+            <?php else: ?>
+                <?= $this->render('subtask/menu', array('task' => $task['task'] ?? [], 'subtask' => $task)) ?>
+            <?php endif ?>
+            </div>
         <?php endforeach ?>
         <svg
             id="gantt-chart"

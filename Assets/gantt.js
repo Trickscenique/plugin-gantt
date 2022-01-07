@@ -123,12 +123,12 @@ KB.on('dom.ready', function () {
 					$btn.parent().parent().find('button').removeClass('active');
 					$btn.addClass('active');
 				});
-				DoubleScroll(container);
+				//DoubleScroll(container);
 			});
 	}
 
 	function DoubleScroll(element) {
-		var scrollbar = document.createElement('div');
+		let scrollbar = document.createElement('div');
 		scrollbar.appendChild(document.createElement('div'));
 		scrollbar.style.overflow = 'auto';
 		scrollbar.style.overflowY = 'hidden';
@@ -136,7 +136,7 @@ KB.on('dom.ready', function () {
 		scrollbar.firstChild.style.width = element.scrollWidth + 'px';
 		//scrollbar.firstChild.style.paddingTop= '1px';
 		scrollbar.firstChild.appendChild(document.createTextNode('\xA0'));
-		var running = false;
+		let running = false;
 		scrollbar.addEventListener('scroll', () => {
 			if (running) {
 				running = false;
