@@ -32,12 +32,13 @@ KB.on('dom.ready', function () {
 			});
 		},
 		onClick: function (task, event, container) {
-			let dropdown = document.getElementById('dropdown-task-id-' + task.id);
-			if (dropdown === null) {
-				return;
-			}
-
 			if (typeof links['t' + task.id] === 'undefined') {
+				let dropdown = document.getElementById('dropdown-task-id-' + task.id);
+
+				if (dropdown === null) {
+					return;
+				}
+
 				let bar = container.querySelector('[data-id="' + task.id + '"]');
 				links['t' + task.id] = dropdown.querySelector('a.dropdown-menu-link-icon');
 
@@ -53,9 +54,12 @@ KB.on('dom.ready', function () {
 				links['t' + task.id].click();
 			}
 
-			//Fix dropdown position
-			dropdown.style.top = event.y + 'px';
-			dropdown.style.left = event.x + 'px';
+			let dropdownContainer = document.getElementById('dropdown');
+			if (dropdownContainer != null) {
+				let ul = dropdownContainer.querySelector('dropdown-submenu-open');
+				ul.style.top = event.y + 'px';
+				ul.style.left = event.x + 'px';
+			}
 		},
 		onDateChange: (task, start, end) => {
 			task.start = start;
