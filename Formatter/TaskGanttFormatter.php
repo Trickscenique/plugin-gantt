@@ -45,7 +45,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             $bars[] = $taskFormated;
 
             if (isset($subtask_bars)) {
-                $bars = array_merge($bars, $subtask_bars);
+                //$bars = array_merge($bars, $subtask_bars);
             }
         }
 
@@ -68,7 +68,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         $start = $task['date_started'] ?: time();
         $end = $task['date_due'] ?: $start;
 
-        $array =  array(
+        return array(
             'type' => 'task',
             'id' => "task-".$task['id'],
             'title' => $task['title'],
@@ -92,9 +92,6 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             'date_started_not_defined' => empty($task['date_started']),
             'date_due_not_defined' => empty($task['date_due']),
         );
-
-
-        return $array;
     }
 
     private function formatSubTasks(array $subTasks, array &$taskFormated):array
