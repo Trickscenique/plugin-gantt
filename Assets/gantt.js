@@ -146,6 +146,7 @@ KB.on('dom.ready', function () {
 			element.scrollLeft = scrollbar.scrollLeft;
 		};
 		element.onscroll = function () {
+			console.log('scroll_pos');
 			if (running) {
 				running = false;
 				return;
