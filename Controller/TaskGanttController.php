@@ -66,8 +66,13 @@ class TaskGanttController extends BaseController
         }
 
         if (! empty($values)) {
-            $values['id'] = $changes['id'];
-            $result = $this->taskModificationModel->update($values);
+            $elements = explode("-", $changes['id']);
+            $values['id'] = $elements[1];
+            if ($elements[0] === "task") {
+                $result = $this->taskModificationModel->update($values);
+            } else {
+                $result = $this->subTaskModel->update($values);
+            }
 
             if (! $result) {
                 $this->response->json(array('message' => 'Unable to save task'), 400);

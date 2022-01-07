@@ -34,7 +34,13 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         $bars = array();
 
         foreach ($this->query->findAll() as $task) {
-            $bars[] = $this->formatTask($task);
+            $taskFormated =  $this->formatTask($task);
+            $subTasks = $this->subTaskModel->getAll($task['id']);
+            if (!empty($subTasks)) {
+                $bars =  $this->formatSubTasks($bars, $subTasks, $taskFormated);
+            }
+            $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
+            $bars[] = $taskFormated;
         }
 
         return $bars;
@@ -58,7 +64,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
         $array =  array(
             'type' => 'task',
-            'id' => $task['id'],
+            'id' => "task-".$task['id'],
             'title' => $task['title'],
             'start' => array(
                 (int) date('Y', $start),
@@ -70,7 +76,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                 (int) date('n', $end),
                 (int) date('j', $end),
             ),
-            'dependencies' =>  implode(",", $this->getLinksId($task['id'])),
+            'dependencies' => $this->getLinksId($task['id']),
             'column_title' => $task['column_name'],
             'assignee' => $task['assignee_name'] ?: $task['assignee_username'],
             'progress' => $this->taskModel->getProgress($task, $this->columns[$task['project_id']]),
@@ -81,11 +87,46 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             'date_due_not_defined' => empty($task['date_due']),
         );
 
-        if ($this->helper->projectRole->canUpdateTask($task)) {
-            $array['onClickUrl'] = $this->helper->url->href('TaskModificationController', 'edit', array('project_id' => $task['project_id'], 'task_id' => $task['id']));
-        }
+
         return $array;
     }
+
+    private function formatSubTasks(array &$bars, array $subTasks, array $taskFormated):array
+    {
+        foreach ($subTasks as $subTask) {
+            $taskFormated['dependencies'][] = "subtask-".$subTask['id'];
+
+            $start = $taskFormated['start'];
+            $end = $taskFormated['end'];
+            if ($subTask['due_date'] != 0) {
+                $end = array(
+                    (int) date('Y', $subTask['due_date']),
+                    (int) date('n', $subTask['due_date']),
+                    (int) date('j', $subTask['due_date']),
+                    );
+            }
+
+            $array =  array(
+                'type' => 'subtask',
+                'id' => "subtask-".$subTask['id'],
+                'title' => $subTask['title'],
+                'start' => $start,
+                'end' => $end,
+                'dependencies' => [],
+                'column_title' => $taskFormated['column_title'],
+                'assignee' =>$taskFormated['assignee'],
+                'progress' => $taskFormated['progress'],
+                'link' => $taskFormated['link'],
+                'color' => $taskFormated['color'],
+                'not_defined' => $taskFormated['not_defined'],
+                'date_started_not_defined' =>$taskFormated['date_started_not_defined'],
+                'date_due_not_defined' => $taskFormated['date_due_not_defined'],
+            );
+            $bars[] = $array;
+        }
+        return $bars;
+    }
+
 
     /**
      * @todo must be in TaskLinkModel
@@ -108,7 +149,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                 $this->links[] = $uiid;
                 continue;
             }
-            $result[] = $link['task_id'];
+            $result[] = "task-".$link['task_id'];
         }
 
         return $result;
