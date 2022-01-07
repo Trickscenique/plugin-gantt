@@ -71,6 +71,7 @@ class TaskGanttController extends BaseController
             if ($elements[0] === "task") {
                 $result = $this->taskModificationModel->update($values);
             } else {
+                unset($values['date_started']);
                 $result = $this->subtaskModel->update($values);
             }
 
