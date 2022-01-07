@@ -647,7 +647,7 @@ var Gantt = (function () {
 				//	// just finished a move action, wait for a few seconds
 				//	return;
 				//}
-				console.log(e);
+
 				this.gantt.trigger_event('click', [this.task, e]);
 			});
 		}

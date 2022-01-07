@@ -56,7 +56,7 @@ KB.on('dom.ready', function () {
 
 			let dropdownContainer = document.getElementById('dropdown');
 			if (dropdownContainer != null) {
-				let ul = dropdownContainer.querySelector('dropdown-submenu-open');
+				let ul = dropdownContainer.querySelector('.dropdown-submenu-open');
 				ul.style.top = event.y + 'px';
 				ul.style.left = event.x + 'px';
 			}
