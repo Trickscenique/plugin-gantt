@@ -39,6 +39,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         $this->status  = $this->subtaskModel->getStatusList();
         $this->status = array_flip($this->status);
 
+        print_r($this->status);
+        die();
         foreach ($this->query->findAll() as $task) {
             $taskFormated =  $this->formatTask($task);
 
