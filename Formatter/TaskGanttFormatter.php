@@ -13,6 +13,7 @@ use Kanboard\Formatter\BaseFormatter;
  */
 class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 {
+
     /**
      * Local cache for project columns
      *
@@ -22,6 +23,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
     private $columns = array();
 
     private $links = [];
+
+    private $status;
 
     /**
      * Apply formatter
@@ -33,6 +36,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
     {
         $bars = array();
 
+        $this->status  = $this->subtaskModel->getStatusList();
+        $this->status = array_reverse($this->status);
         foreach ($this->query->findAll() as $task) {
             $taskFormated =  $this->formatTask($task);
 
@@ -97,6 +102,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
     private function formatSubTasks(array $subTasks, array &$taskFormated):array
     {
         $bars = [];
+
         foreach ($subTasks as $subTask) {
             $taskFormated['dependencies'][] = "subtask-".$subTask['id'];
 
@@ -111,12 +117,10 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             }
 
 
-            print_r(\t('Todo'));
-            die();
-            $progress = match ($subTask['status_name']) {
-                t('Todo') => 1,
-                t('In progress') => 50,
-                t('Done') => 100,
+            $progress = match ($this->status[$subTask['status_name']]) {
+                0 => 1,
+                1 => 50,
+                2 => 100,
             };
 
 
