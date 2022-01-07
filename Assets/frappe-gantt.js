@@ -1635,7 +1635,7 @@ var Gantt = (function () {
 				const ids = [parent_bar_id, ...this.get_all_dependent_tasks(parent_bar_id)];
 
 				bars = ids.map((id) => this.get_bar(id));
-				console.log(ids);
+
 				this.bar_being_dragged = parent_bar_id;
 
 				bars.forEach((bar) => {
@@ -1671,11 +1671,11 @@ var Gantt = (function () {
 					} else if (is_resizing_right) {
 						if (parent_bar_id === bar.task.id) {
 							bar.update_bar_position({
-								x: $bar.finald,
 								width: $bar.owidth + $bar.finaldx,
 							});
 						}
 					} else if (is_dragging) {
+						console.log($bar.ox + $bar.finaldx);
 						bar.update_bar_position({ x: $bar.ox + $bar.finaldx });
 					}
 				});
