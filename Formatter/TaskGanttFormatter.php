@@ -26,7 +26,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
     private $status;
 
-
+    private $ids = [];
 
     /**
      * Apply formatter
@@ -50,7 +50,10 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             }
 
             $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
-            $bars[$taskFormated['id']] = $taskFormated;
+            if (!in_array($taskFormated['id'], $this->ids)) {
+                $bars[] = $taskFormated;
+                $this->ids[] = $taskFormated['id'];
+            }
 
             if (isset($subtask_bars)) {
                 $bars = array_merge($bars, $subtask_bars);
@@ -136,8 +139,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             }
 
 
-
-            $bars["subtask-".$subTask['id']] =  array(
+            if (!in_array("subtask-".$subTask['id'], $this->ids)) {
+                $bars[] =  array(
                 'type' => 'subtask',
                 'id' => "subtask-".$subTask['id'],
                 'task' => $task,
@@ -154,6 +157,9 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                 'date_started_not_defined' =>$taskFormated['date_started_not_defined'],
                 'date_due_not_defined' => $taskFormated['date_due_not_defined'],
             );
+
+                $this->ids[] = "subtask-".$subTask['id'];
+            }
         }
         return $bars;
     }
