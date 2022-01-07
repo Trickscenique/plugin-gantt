@@ -26,6 +26,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
     private $status;
 
+
+
     /**
      * Apply formatter
      *
@@ -48,7 +50,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             }
 
             $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
-            $bars[] = $taskFormated;
+            $bars[$taskFormated['id']] = $taskFormated;
 
             if (isset($subtask_bars)) {
                 $bars = array_merge($bars, $subtask_bars);
@@ -135,7 +137,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
 
 
-            $bars[] =  array(
+            $bars["subtask-".$subTask['id']] =  array(
                 'type' => 'subtask',
                 'id' => "subtask-".$subTask['id'],
                 'task' => $task,
