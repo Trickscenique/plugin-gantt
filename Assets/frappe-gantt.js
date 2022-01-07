@@ -1652,7 +1652,7 @@ var Gantt = (function () {
 				if (!action_in_progress()) return;
 				const dx = e.offsetX - x_on_start;
 				const dy = e.offsetY - y_on_start;
-
+				console.log(bars);
 				bars.forEach((bar) => {
 					const $bar = bar.$bar;
 					$bar.finaldx = this.get_snap_position(dx);
