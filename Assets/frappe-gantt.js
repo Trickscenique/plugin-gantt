@@ -858,7 +858,7 @@ var Gantt = (function () {
 		}
 
 		calculate_path() {
-			let start_x = this.from_task.$bar.getX() - this.from_task.$bar.getWidth() / 2;
+			let start_x = this.from_task.$bar.getX() + this.from_task.$bar.getWidth() / 2;
 
 			const condition = () =>
 				this.to_task.$bar.getX() < start_x + this.gantt.options.padding &&
@@ -870,7 +870,7 @@ var Gantt = (function () {
 
 			const start_y =
 				this.gantt.options.header_height +
-				this.gantt.options.bar_height +
+				this.gantt.options.bar_height / 2 +
 				(this.gantt.options.padding + this.gantt.options.bar_height) * this.from_task.task._index +
 				this.gantt.options.padding;
 
