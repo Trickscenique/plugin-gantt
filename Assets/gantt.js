@@ -123,7 +123,7 @@ KB.on('dom.ready', function () {
 					$btn.parent().parent().find('button').removeClass('active');
 					$btn.addClass('active');
 				});
-				//DoubleScroll(container);
+				DoubleScroll(container);
 			});
 	}
 
@@ -153,7 +153,9 @@ KB.on('dom.ready', function () {
 			running = true;
 			scrollbar.scrollLeft = element.scrollLeft;
 		};
-		element.parentNode.insertBefore(scrollbar, element);
+		let header = document.querySelector('.project-header');
+		header.appendChild(scrollbar);
+		//element.parentNode.insertBefore(scrollbar, element);
 	}
 
 	const getQueryParams = (params, url) => {
