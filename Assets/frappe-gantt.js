@@ -1652,7 +1652,7 @@ var Gantt = (function () {
 				if (!action_in_progress()) return;
 				const dx = e.offsetX - x_on_start;
 				const dy = e.offsetY - y_on_start;
-				console.log(bars);
+
 				bars.forEach((bar) => {
 					const $bar = bar.$bar;
 					$bar.finaldx = this.get_snap_position(dx);
@@ -1660,7 +1660,7 @@ var Gantt = (function () {
 					if (is_resizing_left) {
 						if (parent_bar_id === bar.task.id) {
 							bar.update_bar_position({
-								x: $bar.finaldx,
+								x: $bar.ox + $bar.finaldx,
 								width: $bar.owidth - $bar.finaldx,
 							});
 						} else {
@@ -1671,6 +1671,7 @@ var Gantt = (function () {
 					} else if (is_resizing_right) {
 						if (parent_bar_id === bar.task.id) {
 							bar.update_bar_position({
+								x: $bar.finald,
 								width: $bar.owidth + $bar.finaldx,
 							});
 						}
