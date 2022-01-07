@@ -72,6 +72,8 @@ class TaskGanttController extends BaseController
                 $result = $this->taskModificationModel->update($values);
             } else {
                 unset($values['date_started']);
+                $values['due_date'] = $values['date_due'];
+                unset($values['date_due']);
                 $result = $this->subtaskModel->update($values);
             }
 
