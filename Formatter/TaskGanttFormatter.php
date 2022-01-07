@@ -39,8 +39,6 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         $this->status  = $this->subtaskModel->getStatusList();
         $this->status = array_flip($this->status);
 
-        print_r($this->status);
-        die();
         foreach ($this->query->findAll() as $task) {
             $taskFormated =  $this->formatTask($task);
 
@@ -118,13 +116,19 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                     (int) date('j', $subTask['due_date']),
                     );
             }
-
-
-            $progress = match ($this->status[$subTask['status_name']]) {
-                0 => 1,
-                1 => 50,
-                2 => 100,
-            };
+            switch ($this->status[$subTask['status_name']]) {
+                case 0:
+                    $progress = 1;
+                    break;
+                case 1:
+                    $progress = 50;
+                    break;
+                case 2:
+                    $progress = 100;
+                    break;
+                default:
+                    $progress = 1;
+            }
 
 
 
