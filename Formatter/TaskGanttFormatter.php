@@ -35,12 +35,17 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
         foreach ($this->query->findAll() as $task) {
             $taskFormated =  $this->formatTask($task);
-            $bars[] = &$taskFormated;
+
             $subTasks = $this->subtaskModel->getAll($task['id']);
             if (!empty($subTasks)) {
-                $bars =  $this->formatSubTasks($bars, $subTasks, $taskFormated);
+                $subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated);
             }
+
             $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
+            $bars[] = $taskFormated;
+            if (isset($subtask_bars)) {
+                $bars = array_merge($bars, $subtask_bars);
+            }
         }
 
         return $bars;
@@ -91,8 +96,9 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
         return $array;
     }
 
-    private function formatSubTasks(array &$bars, array $subTasks, array &$taskFormated):array
+    private function formatSubTasks(array $subTasks, array &$taskFormated):array
     {
+        $bars = [];
         foreach ($subTasks as $subTask) {
             $taskFormated['dependencies'][] = "subtask-".$subTask['id'];
 
@@ -106,7 +112,16 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                     );
             }
 
-            $array =  array(
+
+            $progress = match ($subTask['status']) {
+                0 => 1,
+                1 => 50,
+                2 => 100,
+            };
+
+
+
+            $bars[] =  array(
                 'type' => 'subtask',
                 'id' => "subtask-".$subTask['id'],
                 'title' => $subTask['title'],
@@ -114,15 +129,14 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                 'end' => $end,
                 'dependencies' => [],
                 'column_title' => $taskFormated['column_title'],
-                'assignee' =>$taskFormated['assignee'],
-                'progress' => $taskFormated['progress'],
+                'assignee' => $taskFormated['assignee'],
+                'progress' => $progress,
                 'link' => $taskFormated['link'],
                 'color' => $taskFormated['color'],
                 'not_defined' => $taskFormated['not_defined'],
                 'date_started_not_defined' =>$taskFormated['date_started_not_defined'],
                 'date_due_not_defined' => $taskFormated['date_due_not_defined'],
             );
-            $bars[] = $array;
         }
         return $bars;
     }
