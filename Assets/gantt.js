@@ -55,11 +55,11 @@ KB.on('dom.ready', function () {
 			}
 
 			let dropdownContainer = document.getElementById('dropdown');
-			console.log(event);
+
 			if (dropdownContainer != null) {
 				let ul = dropdownContainer.querySelector('.dropdown-submenu-open');
-				ul.style.top = event.y + 'px';
-				ul.style.left = event.x + 'px';
+				ul.style.top = event.pageY + 'px';
+				ul.style.left = event.pageX + 'px';
 			}
 		},
 		onDateChange: (task, start, end) => {
