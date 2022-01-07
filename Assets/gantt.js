@@ -53,11 +53,6 @@ KB.on('dom.ready', function () {
 			if (links['t' + task.id] != null) {
 				links['t' + task.id].click();
 			}
-
-			let dropdownContainer = document.getElementById('dropdown');
-			if (dropdownContainer != null) {
-				links['t' + task.id].insertBefore(dropdownContainer);
-			}
 		},
 		onDateChange: (task, start, end) => {
 			task.start = start;
