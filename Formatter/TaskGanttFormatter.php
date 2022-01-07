@@ -5,6 +5,7 @@ namespace Kanboard\Plugin\Gantt\Formatter;
 use Kanboard\Core\Filter\FormatterInterface;
 use Kanboard\Formatter\BaseFormatter;
 
+error_reporting(E_ALL);
 /**
  * Task Gantt Formatter
  *
@@ -45,7 +46,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             $bars[] = $taskFormated;
 
             if (isset($subtask_bars)) {
-                //$bars = array_merge($bars, $subtask_bars);
+                $bars = array_merge($bars, $subtask_bars);
             }
         }
 
