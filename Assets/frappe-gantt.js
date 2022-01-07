@@ -1675,7 +1675,6 @@ var Gantt = (function () {
 							});
 						}
 					} else if (is_dragging) {
-						console.log($bar.ox + $bar.finaldx);
 						bar.update_bar_position({ x: $bar.ox + dx });
 					}
 				});
