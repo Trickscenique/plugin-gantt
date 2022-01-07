@@ -65,3 +65,7 @@
 .color-amber .bar-progress {
 	fill: #f1d042 !important;
 }
+
+.today-highlight {
+	fill: #efff007a !important;
+}
