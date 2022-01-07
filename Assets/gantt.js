@@ -31,14 +31,13 @@ KB.on('dom.ready', function () {
 				data: JSON.stringify(record),
 			});
 		},
-		onClick: function (task, container) {
+		onClick: function (task, event, container) {
+			let dropdown = document.getElementById('dropdown-task-id-' + task.id);
+			if (dropdown === null) {
+				return;
+			}
+
 			if (typeof links['t' + task.id] === 'undefined') {
-				let dropdown = document.getElementById('dropdown-task-id-' + task.id);
-
-				if (dropdown === null) {
-					return;
-				}
-
 				let bar = container.querySelector('[data-id="' + task.id + '"]');
 				links['t' + task.id] = dropdown.querySelector('a.dropdown-menu-link-icon');
 
@@ -53,6 +52,10 @@ KB.on('dom.ready', function () {
 			if (links['t' + task.id] != null) {
 				links['t' + task.id].click();
 			}
+
+			//Fix dropdown position
+			dropdown.style.top = event.y + 'px';
+			dropdown.style.left = event.x + 'px';
 		},
 		onDateChange: (task, start, end) => {
 			task.start = start;
@@ -100,8 +103,8 @@ KB.on('dom.ready', function () {
 					view_mode: 'Day',
 					date_format: 'YYYY-MM-DD',
 					popup_trigger: 'mouseover',
-					on_click: function (task) {
-						GanttUtils.onClick(task, container);
+					on_click: function (task, event) {
+						GanttUtils.onClick(task, event, container);
 					},
 					on_date_change: function (task, start, end) {
 						GanttUtils.onDateChange(task, start, end);

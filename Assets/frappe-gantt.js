@@ -648,7 +648,7 @@ var Gantt = (function () {
 				//	return;
 				//}
 				console.log(e);
-				this.gantt.trigger_event('click', [this.task]);
+				this.gantt.trigger_event('click', [this.task, e]);
 			});
 		}
 
