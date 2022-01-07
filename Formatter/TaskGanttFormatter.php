@@ -43,6 +43,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
             $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
             $bars[] = $taskFormated;
+
             if (isset($subtask_bars)) {
                 $bars = array_merge($bars, $subtask_bars);
             }
