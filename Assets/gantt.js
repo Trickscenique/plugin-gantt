@@ -137,23 +137,22 @@ KB.on('dom.ready', function () {
 		//scrollbar.firstChild.style.paddingTop= '1px';
 		scrollbar.firstChild.appendChild(document.createTextNode('\xA0'));
 		var running = false;
-		scrollbar.onscroll = function () {
+		scrollbar.addEventListener('scroll', () => {
 			if (running) {
 				running = false;
 				return;
 			}
 			running = true;
 			element.scrollLeft = scrollbar.scrollLeft;
-		};
-		element.onscroll = function () {
-			console.log('scroll_pos');
+		});
+		element.addEventListener('scroll', () => {
 			if (running) {
 				running = false;
 				return;
 			}
 			running = true;
 			scrollbar.scrollLeft = element.scrollLeft;
-		};
+		});
 
 		element.parentNode.insertBefore(scrollbar, element);
 	}
