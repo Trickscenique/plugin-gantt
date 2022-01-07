@@ -104,10 +104,11 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
     {
         $bars = [];
 
+        $lastEnd = null;
         foreach ($subTasks as $subTask) {
             $taskFormated['dependencies'][] = "subtask-".$subTask['id'];
 
-            $start = $taskFormated['start'];
+            $start = $lastEnd ?? $taskFormated['start'];
             $end = $taskFormated['end'];
             if ($subTask['due_date'] != 0) {
                 $end = array(
@@ -116,6 +117,8 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
                     (int) date('j', $subTask['due_date']),
                     );
             }
+
+            $lastEnd = $end;
             switch ($this->status[$subTask['status_name']]) {
                 case 0:
                     $progress = 1;
