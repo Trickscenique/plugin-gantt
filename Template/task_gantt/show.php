@@ -37,19 +37,19 @@
             $elements = explode("-", $task['id']);
             $task['id'] = $elements[1] ?? null;
             $idattribute = $task['id'];
-            json_encode($elements, JSON_HEX_APOS) ?>
             if (is_array($elements)) {
                 $idattribute = implode('-', $elements);
             }
             ?>
- <div id="dropdown-task-id-<?= $idattribute ?>" style="display: none;">
+        <div id="dropdown-task-id-" style="display: none;">
+        <?= $idattribute ?>
             <?php if ($elements[0] == "task"): ?>
                   <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
             <?php endif ?>
             <?php if ($elements[0] == "subtask"): ?>
                 <?= $this->render('subtask/menu', array('task' => $task['task'] ?? [], 'subtask' => $task)) ?>
             <?php endif ?>
-            </div>
+        </div>
         <?php endforeach ?>
         <svg
             id="gantt-chart"
