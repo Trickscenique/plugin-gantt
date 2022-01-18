@@ -33,9 +33,11 @@
     <?php if (!empty($tasks)): ?>
 
         <?php foreach ($tasks as $task): ?>
-            <?php $elements = explode("-", $task['id']);
+            <?php
+            $elements = explode("-", $task['id']);
             $task['id'] = $elements[1] ?? null;
             $idattribute = $task['id'];
+            json_encode($elements, JSON_HEX_APOS) ?>
             if (is_array($elements)) {
                 $idattribute = implode('-', $elements);
             }
