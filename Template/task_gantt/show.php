@@ -34,7 +34,7 @@
 
         <?php foreach ($tasks as $task): ?>
             <?php $elements = explode("-", $task['id']);
-            $task['id'] = $elements[1];
+            $task['id'] = $elements[1] ?? null;
             ?>
             <div id="dropdown-task-id-<?= implode('-', $elements) ?>" style="display: none;">
             <?php if ($elements[0] == "task"): ?>
