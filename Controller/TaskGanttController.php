@@ -38,13 +38,13 @@ class TaskGanttController extends BaseController
         }
 
 
-        $this->response->html($this->helper->layout->app('Gantt:task_gantt/show', array(
-            'project' => $project,
-            'title' => $project['name'],
-            'description' => $this->helper->projectHeader->getDescription($project),
-            'sorting' => $sorting,
-            'tasks' => $filter->format($this->taskGanttFormatter),
-        )));
+        //$this->response->html($this->helper->layout->app('Gantt:task_gantt/show', array(
+        //    'project' => $project,
+        //    'title' => $project['name'],
+        //    'description' => $this->helper->projectHeader->getDescription($project),
+        //    'sorting' => $sorting,
+        //    'tasks' => $filter->format($this->taskGanttFormatter),
+        //)));
     }
 
 
