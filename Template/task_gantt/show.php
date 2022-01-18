@@ -42,10 +42,10 @@
             }
             ?>
         <div id="dropdown-task-id-<?= $idattribute ?>" style="display: none;">
-
-            <?php if ($elements[0] == "subtask"): ?>
-                <?= $this->render('subtask/menu', array('task' => $task['task'] ?? [], 'subtask' => $task)) ?>
+            <?php if ($elements[0] == "task"): ?>
+                  <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
             <?php endif ?>
+
         </div>
         <?php endforeach ?>
         <svg
