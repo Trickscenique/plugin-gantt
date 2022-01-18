@@ -42,7 +42,7 @@
             }
             ?>
         <div id="dropdown-task-id-" style="display: none;">
-        <?= $idattribute ?>
+
             <?php if ($elements[0] == "task"): ?>
                   <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
             <?php endif ?>
