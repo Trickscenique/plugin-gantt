@@ -35,8 +35,12 @@
         <?php foreach ($tasks as $task): ?>
             <?php $elements = explode("-", $task['id']);
             $task['id'] = $elements[1] ?? null;
+            $idattribute = $task['id'];
+            if (is_array($elements)) {
+                $idattribute = implode('-', $elements);
+            }
             ?>
- <div id="dropdown-task-id-" style="display: none;">
+ <div id="dropdown-task-id-<?= $idattribute ?>" style="display: none;">
             <?php if ($elements[0] == "task"): ?>
                   <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
             <?php endif ?>
