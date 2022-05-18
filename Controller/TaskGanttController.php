@@ -36,9 +36,9 @@ class TaskGanttController extends BaseController
         }
 
         if ($sorting === 'date') {
-            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->addCondition(TaskModel::TABLE.'.date_started >= ' .(new DateTime())->format("u"));
+            $filter->getQuery()->desc(TaskModel::TABLE.'.date_started')->addCondition(TaskModel::TABLE.'.date_started >= ' .(new DateTime())->format("u"));
             $tasks = $filter->format($this->taskGanttFormatter);
-            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->addCondition(TaskModel::TABLE.'.date_started < ' .(new DateTime())->format("u"));
+            $filter->getQuery()->desc(TaskModel::TABLE.'.date_started')->addCondition(TaskModel::TABLE.'.date_started < ' .(new DateTime())->format("u"));
             $tasks = array_merge($tasks, $filter->format($this->taskGanttFormatter));
         } else {
             $filter->getQuery()->asc('column_position')->asc(TaskModel::TABLE.'.position');
