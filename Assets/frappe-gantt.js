@@ -1261,8 +1261,11 @@ var Gantt = (function () {
 			let navbar = header.length != 0 ? header[0].offsetHeight : 10;
 			document.addEventListener('scroll', (e) => {
 				let height = navbar + e.currentTarget.scrollTop;
-				console.log(height, e);
-				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
+				console.log(height, e, this.layers.date);
+				this.layers.date.setAttribute(
+					'transform',
+					'translate(0,' + this.$container.scrollTop + ')',
+				);
 			});
 		}
 
