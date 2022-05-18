@@ -1064,6 +1064,13 @@ var Gantt = (function () {
 			this.popup_wrapper = document.createElement('div');
 			this.popup_wrapper.classList.add('popup-wrapper');
 			this.$container.appendChild(this.popup_wrapper);
+
+			$.on(this.$container, 'scroll', (e) => {
+				this.layers.date.setAttribute(
+					'transform',
+					'translate(0,' + e.currentTarget.scrollTop + ')',
+				);
+			});
 		}
 
 		setup_options(options) {
