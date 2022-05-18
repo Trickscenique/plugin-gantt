@@ -1068,9 +1068,9 @@ var Gantt = (function () {
 			let header = document.getElementsByClassName('project-header');
 			let navbar = header.length != 0 ? header[0].offsetHeight : 10;
 			$.on(this.$container, 'scroll', (e) => {
-				let height = navbar + e.currentTarget.scrollTop;
+				let height = 100 + e.currentTarget.scrollTop;
 				console.log(height);
-				this.layers.date.setAttribute('transform', 'translate("0px","' + height + 'px")');
+				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
 			});
 		}
 
