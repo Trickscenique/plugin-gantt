@@ -1281,7 +1281,8 @@ var Gantt = (function () {
 
 		setup_layers() {
 			this.layers = {};
-			const layers = ['grid', 'date', 'arrow', 'progress', 'bar', 'details'];
+			//const layers = ['grid', 'date', 'arrow', 'progress', 'bar', 'details'];
+			const layers = ['grid', 'arrow', 'progress', 'bar', 'details', 'date'];
 			// make group layers
 			for (let layer of layers) {
 				this.layers[layer] = createSVG('g', {
@@ -1361,8 +1362,8 @@ var Gantt = (function () {
 				y: 0,
 				width: header_width,
 				height: header_height,
-				class: 'grid-header board-swimlane-header',
-				append_to: this.layers.grid,
+				class: 'grid-header',
+				append_to: this.layers.date, //this.layers.grid,
 			});
 		}
 
@@ -1443,6 +1444,10 @@ var Gantt = (function () {
 						class: 'upper-text',
 						append_to: this.layers.date,
 					});
+					this.layers.date.setAttribute(
+						'transform',
+						'translate(0,' + e.currentTarget.scrollTop + ')',
+					);
 
 					// remove out-of-bound dates
 					if ($upper_text.getBBox().x2 > this.layers.grid.getBBox().width) {
