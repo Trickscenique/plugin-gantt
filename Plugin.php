@@ -8,7 +8,7 @@ use Kanboard\Core\Translator;
 use Kanboard\Plugin\Gantt\Formatter\ProjectGanttFormatter;
 use Kanboard\Plugin\Gantt\Formatter\TaskGanttFormatter;
 
-error_reporting(E_ALL);
+phpinfo();
 class Plugin extends Base
 {
     public function initialize()
