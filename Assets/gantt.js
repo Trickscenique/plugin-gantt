@@ -101,6 +101,7 @@ KB.on('dom.ready', function () {
 				return new Gantt('#gantt-chart', tasks, {
 					column_width: 30,
 					step: 24,
+					header_height: 100,
 					view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
 					bar_height: 25,
 					bar_corner_radius: 3,
