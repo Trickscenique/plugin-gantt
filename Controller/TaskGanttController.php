@@ -2,7 +2,6 @@
 
 namespace Kanboard\Plugin\Gantt\Controller;
 
-use DateTime;
 use Kanboard\Controller\BaseController;
 use Kanboard\Filter\TaskProjectFilter;
 use Kanboard\Model\TaskModel;
@@ -36,13 +35,9 @@ class TaskGanttController extends BaseController
         }
 
         if ($sorting === 'date') {
-            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->addCondition(TaskModel::TABLE.'.date_started >= ' .(new DateTime())->format("u"));
-            $tasks = $filter->format($this->taskGanttFormatter);
-            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->addCondition(TaskModel::TABLE.'.date_started < ' .(new DateTime())->format("u"));
-            $tasks = array_merge($tasks, $filter->format($this->taskGanttFormatter));
+            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started');
         } else {
             $filter->getQuery()->asc('column_position')->asc(TaskModel::TABLE.'.position');
-            $tasks = $filter->format($this->taskGanttFormatter);
         }
 
 
@@ -51,7 +46,7 @@ class TaskGanttController extends BaseController
             'title' => $project['name'],
             'description' => $this->helper->projectHeader->getDescription($project),
             'sorting' => $sorting,
-            'tasks' => $tasks,
+            'tasks' => $filter->format($this->taskGanttFormatter),
         )));
     }
 
