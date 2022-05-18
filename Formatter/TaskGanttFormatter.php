@@ -46,10 +46,10 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
             $subTasks = $this->subtaskModel->getAll($task['id']);
             if (!empty($subTasks)) {
-                //$subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated, $task);
+                $subtask_bars =  $this->formatSubTasks($subTasks, $taskFormated, $task);
             }
 
-            $taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
+            //$taskFormated['dependencies'] = implode(',', $taskFormated['dependencies']);
             if (!in_array($taskFormated['id'], self::$ids)) {
                 $bars[] = $taskFormated;
                 self::$ids[] = $taskFormated['id'];
