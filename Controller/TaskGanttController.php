@@ -24,8 +24,10 @@ class TaskGanttController extends BaseController
         if (isset($_GET['search'])) {
             $search = $this->helper->projectHeader->getSearchQuery($project);
         } else {
-            $search = ' ';
+            $search = '';
         }
+        print_r($search);
+        die();
 
 
         $sorting = $this->request->getStringParam('sorting', '');
