@@ -1065,11 +1065,11 @@ var Gantt = (function () {
 			this.popup_wrapper.classList.add('popup-wrapper');
 			this.$container.appendChild(this.popup_wrapper);
 
+			let header = document.getElementById('project-header');
+			let navbar = header.offsetHeight ?? 10;
 			$.on(this.$container, 'scroll', (e) => {
-				this.layers.date.setAttribute(
-					'transform',
-					'translate(0,' + e.currentTarget.scrollTop + ')',
-				);
+				let height = navbar + e.currentTarget.scrollTop;
+				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
 			});
 		}
 
