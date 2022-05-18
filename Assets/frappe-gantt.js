@@ -1259,7 +1259,7 @@ var Gantt = (function () {
 			this.bind_bar_events();
 			let header = document.getElementsByClassName('project-header');
 			let navbar = header.length != 0 ? header[0].offsetHeight : 10;
-			$.on(this.$container, 'scroll', (e) => {
+			document.addEventListener('scroll', (e) => {
 				let height = navbar + e.currentTarget.scrollTop;
 				console.log(height, e);
 				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
