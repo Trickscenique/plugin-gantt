@@ -1064,14 +1064,6 @@ var Gantt = (function () {
 			this.popup_wrapper = document.createElement('div');
 			this.popup_wrapper.classList.add('popup-wrapper');
 			this.$container.appendChild(this.popup_wrapper);
-
-			/*	let header = document.getElementsByClassName('project-header');
-			let navbar = header.length != 0 ? header[0].offsetHeight : 10;
-			$.on(this.$container, 'scroll', (e) => {
-				let height = navbar + e.currentTarget.scrollTop;
-				console.log(height, e);
-				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
-			});*/
 		}
 
 		setup_options(options) {
@@ -1265,6 +1257,13 @@ var Gantt = (function () {
 		bind_events() {
 			this.bind_grid_click();
 			this.bind_bar_events();
+			let header = document.getElementsByClassName('project-header');
+			let navbar = header.length != 0 ? header[0].offsetHeight : 10;
+			$.on(this.$container, 'scroll', (e) => {
+				let height = navbar + e.currentTarget.scrollTop;
+				console.log(height, e);
+				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
+			});
 		}
 
 		render() {
@@ -1281,8 +1280,7 @@ var Gantt = (function () {
 
 		setup_layers() {
 			this.layers = {};
-			//const layers = ['grid', 'date', 'arrow', 'progress', 'bar', 'details'];
-			const layers = ['grid', 'arrow', 'progress', 'bar', 'details', 'date'];
+			const layers = ['grid', 'date', 'arrow', 'progress', 'bar', 'details'];
 			// make group layers
 			for (let layer of layers) {
 				this.layers[layer] = createSVG('g', {
@@ -1362,8 +1360,8 @@ var Gantt = (function () {
 				y: 0,
 				width: header_width,
 				height: header_height,
-				class: 'grid-header',
-				append_to: this.layers.date, //this.layers.grid,
+				class: 'grid-header ',
+				append_to: this.layers.grid,
 			});
 		}
 
@@ -1444,10 +1442,6 @@ var Gantt = (function () {
 						class: 'upper-text',
 						append_to: this.layers.date,
 					});
-					this.layers.date.setAttribute(
-						'transform',
-						'translate(0,' + e.currentTarget.scrollTop + ')',
-					);
 
 					// remove out-of-bound dates
 					if ($upper_text.getBBox().x2 > this.layers.grid.getBBox().width) {
