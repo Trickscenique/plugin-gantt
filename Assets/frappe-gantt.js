@@ -1257,14 +1257,10 @@ var Gantt = (function () {
 		bind_events() {
 			this.bind_grid_click();
 			this.bind_bar_events();
-			let header = document.getElementsByClassName('project-header');
-			let navbar = header.length != 0 ? header[0].offsetHeight : 10;
-			document.addEventListener('scroll', (e) => {
-				let height = navbar + e.currentTarget.scrollTop;
-				console.log(height, e, this.layers.date);
+			$.on(document, 'scroll', (e) => {
 				this.layers.date.setAttribute(
 					'transform',
-					'translate(0,' + this.$container.scrollTop + ')',
+					'translate(0,' + Math.max(0, -this.$container.getBoundingClientRect().y) + ')',
 				);
 			});
 		}
