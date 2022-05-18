@@ -8,9 +8,6 @@ use Kanboard\Core\Translator;
 use Kanboard\Plugin\Gantt\Formatter\ProjectGanttFormatter;
 use Kanboard\Plugin\Gantt\Formatter\TaskGanttFormatter;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 class Plugin extends Base
 {
     public function initialize()

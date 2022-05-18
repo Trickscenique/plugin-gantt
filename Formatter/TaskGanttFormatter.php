@@ -24,7 +24,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
 
     private $links = [];
 
-    private $status;
+    private $status = [];
 
     private $ids = [];
 
