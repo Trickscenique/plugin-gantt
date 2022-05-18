@@ -98,7 +98,7 @@ KB.on('dom.ready', function () {
 			return resolve(tasks);
 		})
 			.then((tasks) => {
-				return new Gantt('#gantt-chart', tasks, {
+				let gantt = new Gantt('#gantt-chart', tasks, {
 					column_width: 30,
 					step: 24,
 					header_height: 100,
@@ -122,6 +122,12 @@ KB.on('dom.ready', function () {
 					//	GanttUtils.onViewChange(mode);
 					//},
 				});
+				const oldest = gantt.get_oldest_starting_date().getTime();
+				const t = new Date() - oldest;
+
+				gantt.gantt_start = new Date(gantt.gantt_start.getTime() - t);
+				gantt.set_scroll_position();
+				return gantt;
 			})
 			.then((chart) => {
 				$('.btn-gantt-chart').on('click', function () {
