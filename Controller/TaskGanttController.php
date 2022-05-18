@@ -35,7 +35,7 @@ class TaskGanttController extends BaseController
         }
 
         if ($sorting === 'date') {
-            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started');
+            $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->asc(TaskModel::TABLE.'.date_due');
         } else {
             $filter->getQuery()->asc('column_position')->asc(TaskModel::TABLE.'.position');
         }
