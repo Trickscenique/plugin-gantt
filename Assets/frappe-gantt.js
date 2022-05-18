@@ -1260,7 +1260,7 @@ var Gantt = (function () {
 			$.on(document, 'scroll', (e) => {
 				this.layers.date.setAttribute(
 					'transform',
-					'translate(0,' + Math.max(0, -this.$container.getBoundingClientRect().y) + ')',
+					'translate(0,' + e.currentTarget.scrollTop + ')',
 				);
 				console.log(this.layers.date);
 			});
