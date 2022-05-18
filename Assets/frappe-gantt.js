@@ -1070,7 +1070,7 @@ var Gantt = (function () {
 			$.on(this.$container, 'scroll', (e) => {
 				let height = navbar + e.currentTarget.scrollTop;
 				console.log(height);
-				this.layers.date.setAttribute('transform', 'translate(0,' + height + ')');
+				this.layers.date.setAttribute('transform', 'translate(0px,' + height + 'px)');
 			});
 		}
 
