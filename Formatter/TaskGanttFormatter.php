@@ -58,7 +58,7 @@ class TaskGanttFormatter extends BaseFormatter implements FormatterInterface
             if (isset($subtask_bars)) {
                 $bars = array_merge($bars, $subtask_bars);
             }
-            unset($subtask_bars)
+            unset($subtask_bars);
         }
 
         return $bars;
