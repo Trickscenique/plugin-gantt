@@ -1361,7 +1361,7 @@ var Gantt = (function () {
 				y: 0,
 				width: header_width,
 				height: header_height,
-				class: 'grid-header',
+				class: 'grid-header board-swimlane-header',
 				append_to: this.layers.grid,
 			});
 		}
