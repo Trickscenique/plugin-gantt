@@ -1080,9 +1080,10 @@ var Gantt = (function () {
 				column_width: 30,
 				step: 24,
 				view_modes: [...Object.values(VIEW_MODE)],
-
+				bar_height: 20,
 				bar_corner_radius: 3,
 				arrow_curve: 5,
+				padding: 18,
 				view_mode: 'Week',
 				date_format: 'YYYY-MM-DD',
 				popup_trigger: 'click',
