@@ -21,12 +21,15 @@ class TaskGanttController extends BaseController
     public function show()
     {
         $project = $this->getProject();
-        if (isset($_GET['search']) && $_GET['search'] != '') {
+        if (isset($_GET['search'])) {
             $search = $this->helper->projectHeader->getSearchQuery($project);
-            $filter = $this->taskLexer->build($search)->withFilter(new TaskProjectFilter($project['id']));
+        } else {
+            $search = ' ';
         }
 
+
         $sorting = $this->request->getStringParam('sorting', '');
+        $filter = $this->taskLexer->build($search)->withFilter(new TaskProjectFilter($project['id']));
 
         if ($sorting === '') {
             $sorting = $this->configModel->get('gantt_task_sort', 'board');
