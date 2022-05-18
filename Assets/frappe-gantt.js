@@ -1265,7 +1265,6 @@ var Gantt = (function () {
 					'transform',
 					'translate(0,' + Math.max(0, -this.$container.getBoundingClientRect().y + navbar) + ')',
 				);
-				console.log(this.layers.date);
 			});
 		}
 
